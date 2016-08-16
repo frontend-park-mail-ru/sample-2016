@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/DmitryDorofeev/sample.git"
   },
+  "engines": {
+    "node": "6.3.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
