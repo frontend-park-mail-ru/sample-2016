@@ -9,6 +9,14 @@
 	<script src="main.js"></script>
 </head>
 <body>
-	<h1>Hello, world</h1>
+	<!-- Emmet -->
+	<h3>Привет, залогинься!</h3>
+	<form action="/users" method="post" onsubmit="onSubmit(this); return false;">
+		<input required placeholder="Ваш email" type="email"  name="email" value="" />
+		<input required placeholder="Ваше имя" type="text" name="user" value="" />
+		<button name="name">
+			Привет!
+		</button>
+	</form>
 </body>
 </html>
