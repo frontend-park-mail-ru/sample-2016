@@ -2,6 +2,11 @@ language: node_js
 node_js:
   - "6"
 
+branches:
+  only:
+  - master
+  - /^lesson-.*$/
+
 deploy:
   provider: heroku
   api_key:
