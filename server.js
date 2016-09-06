@@ -3,15 +3,14 @@ let technologger = require('technologger');
 let parser = require('body-parser');
 let app = express();
 
+let socket = require('./socket');
+
 app.use('/', express.static('public'));
 
 app.use(parser.json());
-app.use(technologger);
 
-app.post('/users', (req, res) => {
-    console.log(req.body);
-    res.send('100');
-    // TODO: вернуть количество обращений
+app.post('/messages', (req, res) => {
+	socket.publish(req.body).then(body => res.json(body));
 });
 
 app.listen(process.env.PORT || 3000, () => {

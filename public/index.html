@@ -9,14 +9,30 @@
 	<script src="main.js"></script>
 </head>
 <body>
-	<!-- Emmet -->
-	<h3 id="helloWorld">Привет, залогинься!</h3>
-	<form action="/users" method="post" onsubmit="onSubmit(this); return false;">
-		<input required placeholder="Ваш email" type="email"  name="email" value="" />
-		<input required placeholder="Ваше имя" type="text" name="user" value="" />
-		<button name="name">
-			Привет!
-		</button>
-	</form>
+
+	<div id="jsLogin">
+		<h3>Привет, залогинься!</h3>
+		<form onsubmit="onLogin(this); return false;">
+			<input required placeholder="Ваш email" type="email"  name="email" value="" />
+			<input required placeholder="Ваше имя" type="text" name="user" value="" />
+			<button name="name">
+				Привет!
+			</button>
+		</form>
+	</div>
+
+	<div id="jsChat" hidden>
+		<h3 id="jsTitle">Привет %username%!</h3>
+		<div class="chat">
+			<div class="chat__message">Привет всем</div>
+			<div class="chat__message chat__message_my">Я с вами!</div>
+		</div>
+		<form onsubmit="onLogin(this); return false;">
+			<textarea name="message" cols="30" rows="10"></textarea>
+			<button name="name">
+				Отправить
+			</button>
+		</form>
+	</div>
 </body>
 </html>

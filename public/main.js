@@ -1,19 +1,27 @@
 'use strict';
-/**
-* @see http://artsiom.mezin.eu/technofront/
-*/
-function onSubmit (form) {
-	let data = {
+
+let userData = {};
+
+function onLogin (form, block) {
+	userData = {
 		user: form.elements['user'].value,
 		email: form.elements['email'].value
 	};
 
-	let result = request('/users', data);
+	 jsLogin.hidden = true;
+	 jsChat.hidden = false;
 
-	if (result === '100') {
-		form.hidden = true;
-		window.helloWorld.innerHTML = hello(data.user); 
-	}
+	 if (userData.user) {
+		 jsTitle.innerHTML = jsTitle.innerHTML.replace('%username%', userData.user);
+	 }
+}
+
+function onChat (form) {
+	let data = {
+		message: form.elements['message'].value
+	};
+
+	// let result = request('/users', data);
 
 	console.log(data, result);
 }
