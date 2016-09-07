@@ -28,13 +28,13 @@ exports.post = {
 		"description": "создание тестового сообщения",
 		"request": {
 			"params": {
-			  "login": "test",
-			  "text": "Проверяем"
+				"login": "test",
+				"text": "Проверяем"
 			}
 		},
 		"response": {
 			"status": 200,
-				"headers": {
+			"headers": {
 				"content-type": "application/json"
 			},
 			"validator": function (res) {
@@ -55,4 +55,44 @@ exports.post = {
 			}
 		}
 	}]
+};
+
+exports.get = {
+	"tags": ["message"],
+	"description": "Метод получает список сообщений",
+
+	"responses": {
+		"200": {
+			"schema": {
+				"description": "Список сообщений",
+				"type": "array",
+				"items": {
+					"$ref": "#/definitions/Message"
+				}
+			}
+		}
+	},
+
+	"x-amples": [{
+		"description": "получение списка сообщений",
+		"request": {
+			"params": {}
+		},
+		"response": {
+			"status": 200,
+			"headers": {
+				"content-type": "application/json"
+			},
+			"validator": function (res) {
+
+				if (Array.isArray(res)) {
+					return true;
+				}
+
+				return 'не корректный список сообщений';
+			}
+		}
+	}]
+
+
 }

@@ -5,15 +5,20 @@ module.exports =  {
 	"properties": {
 		"login": {
 			"description": "Логин автора",
-			"type": "string"
+			"type": "string",
+			"minLength": 6,
+ 			"maxLength": 12
 		},
 		"text": {
 			"description": "Текст сообщения",
-			"type": "string"
+			"type": "string",
+			"minLength": 2,
+ 			"maxLength": 256
 		},
 		"id": {
 			"description": "Идентификатор сообщения",
-			"type": "number"
+			"type": "integer",
+			"minimum": 0
 		}
 	},
 
