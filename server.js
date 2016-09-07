@@ -14,10 +14,6 @@ app.post('/messages', (req, res) => {
 	technolibs.publish(req.body).then(body => res.json(req.body));
 });
 
-app.get('/messages', (req, res) => {
-	technolibs.publish(req.body).then(body => res.json(body));
-});
-
 app.listen(process.env.PORT || 3000, () => {
 	console.log(`App started on port ${process.env.PORT || 3000}`);
 });
