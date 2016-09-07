@@ -20,16 +20,24 @@ function onLogin (form, block) {
 	 subscribe();
 }
 
-function createMessage (text, isMy = false) {
-	let div = document.createElement('div');
-	div.classList.add('chat__message');
+function createMessage (opts, isMy = false) {
+	let message = document.createElement('div');
+	let email = document.createElement('div');
+
+
+	message.classList.add('chat__message');
+	email.classList.add('chat__email');
+
 
 	if (isMy) {
-		div.classList.add('chat__message_my');
+		message.classList.add('chat__message_my');
 	}
-	div.innerHTML = text;
+	message.innerHTML = opts.message;
+	email.innerHTML = opts.email;
+	message.appendChild(email);
 
-	return div;
+
+	return message;
 }
 
 function onChat (form) {
@@ -45,7 +53,7 @@ function onChat (form) {
 function renderChat (items) {
 	jsMessages.innerHTML = '';
 	items.forEach(item => {
-		let message = createMessage(item.message, item.email === userData.email);
+		let message = createMessage(item, item.email === userData.email);
 		jsMessages.appendChild(message);
 	});
 	jsMessages.scrollTop = jsMessages.scrollHeight;
