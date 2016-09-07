@@ -24,13 +24,13 @@ function createMessage (opts, isMy = false) {
 	let message = document.createElement('div');
 	let email = document.createElement('div');
 
-
 	message.classList.add('chat__message');
 	email.classList.add('chat__email');
 
-
 	if (isMy) {
 		message.classList.add('chat__message_my');
+	} else {
+		message.style.backgroundColor = `#${technolibs.colorHash(opts.email)}`;
 	}
 	message.innerHTML = opts.message;
 	email.innerHTML = opts.email;
