@@ -11,7 +11,7 @@ app.use('/libs', express.static('node_modules'));
 app.use(parser.json());
 
 app.post('/messages', (req, res) => {
-	technolibs.publish(req.body).then(body => res.json(body));
+	technolibs.publish(req.body).then(body => res.json(req.body));
 });
 
 app.get('/messages', (req, res) => {
