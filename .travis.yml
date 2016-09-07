@@ -2,8 +2,14 @@ language: node_js
 node_js:
   - "6"
 
+branches:
+  only:
+  - master
+  - /^lesson-.*$/
+
 deploy:
   provider: heroku
   api_key:
     secure: pN1Xfmn4xExurtVNdrFrnmH8nPvOdO30Bh12/9qDdtCZ8ZX2hGQ6MsbYkPca2gaTjcZiNaYx3ozfENsO0xj9Bw4RswkzGsA/y7VOf1ej2YXo4F/8yx8FFM3rL2J+IWvOErytg5vR84dpKBN1A+8pVK4Xg8401Tumc9yHyfiOphlAwnQv0XdZLLrqaU6fVd48dlp1VguOkRLIptHAIZyONNicgsq4PZ+g5CdBxOYsPLieR2IHWRu9aTLXniUEATWHjT0nd0bQK46RV7VasmXvQxOQIGjG3UQ0L5eEeHmbbt94Huvf0Aju01HFVU2GpUgeTQ1u1hgCmKDH5XEoOz9kBfV49/dH7abwRuf/jhgEWujfqVY05XR7/MTq3os4KLAxDaFWtrf++N0XtE2B69yoF8TiaIjaoWeKXPtszjrHkauZCvaJQU/QWaLovBKId3ld11sZxNlHvVLkbvUakzRvI9Yatyf4INuO5kapU5xGbVu9qYYbZzUNAMFoe2lX43UHoNZy2OLluYHITd2dIqeAqL/1INQk2oMOA81wqKOAlyc0Neg3dwaz7p5UY9B4ubwyTlZu5JW8A5TikQUc7RivvfYKylW+k6SVbzvTh0D8+2aejItdq2AAGij9Ab7DH3bLAtthxbSA4oqOpfXFgADPcz3BghgsZv10HOTxpiXCWOI=
   app: front-parkmailru-hello
+  all_branches: true

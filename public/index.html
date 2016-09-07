@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hello</title>
+	<title>Frontend privet</title>
+	<link rel="stylesheet" href="/css/milligram.min.css"/>
+	<link rel="stylesheet" href="/css/main.css" />
+	<script src="lib.js"></script>
+	<script src="main.js"></script>
 </head>
 <body>
-	<div id="name"></div>
-	<script src="main.js"></script>
-	<script>
-		let name = window.prompt('Enter your name');
-		document.getElementById('name').innerText = hello(name);
-	</script>
+	<!-- Emmet -->
+	<h3 id="helloWorld">Привет, залогинься!</h3>
+	<form action="/users" method="post" onsubmit="onSubmit(this); return false;">
+		<input required placeholder="Ваш email" type="email"  name="email" value="" />
+		<input required placeholder="Ваше имя" type="text" name="user" value="" />
+		<button name="name">
+			Привет!
+		</button>
+	</form>
 </body>
 </html>
