@@ -1,7 +1,6 @@
 'use strict';
 
 let userData = {
-	email: 'iketari@gmail.com'
 };
 
 function onLogin (form, block) {
@@ -46,7 +45,7 @@ function onChat (form) {
 		email: userData.email
 	};
 
-	let result = technolibs.request('/messages', data);
+	let result = technolibs.request('/api/messages', data);
 	form.reset();
 }
 
@@ -65,7 +64,7 @@ function subscribe () {
 	});
 }
 
-function hello (text) {
+function hello(text) {
 	return 'Привет, ' + text;
 }
 
