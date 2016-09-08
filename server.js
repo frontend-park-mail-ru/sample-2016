@@ -3,15 +3,15 @@ let technologger = require('technologger');
 let parser = require('body-parser');
 let app = express();
 
+let technolibs = require('technolibs');
+
 app.use('/', express.static('public'));
+app.use('/libs', express.static('node_modules'));
 
 app.use(parser.json());
-app.use(technologger);
 
-app.post('/users', (req, res) => {
-    console.log(req.body);
-    res.send('100');
-    // TODO: вернуть количество обращений
+app.post('/messages', (req, res) => {
+	technolibs.publish(req.body).then(body => res.json(req.body));
 });
 
 app.listen(process.env.PORT || 3000, () => {
