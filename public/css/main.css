@@ -18,6 +18,7 @@ body {
     background-color: #bdbdbd;
     margin: 0.5vw 0;
 	margin-right: 5vw;
+	word-wrap: break-word;
 }
 
 .chat__message_my {
