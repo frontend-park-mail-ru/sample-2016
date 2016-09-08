@@ -5,18 +5,35 @@
 	<title>Frontend privet</title>
 	<link rel="stylesheet" href="/css/milligram.min.css"/>
 	<link rel="stylesheet" href="/css/main.css" />
-	<script src="lib.js"></script>
+	<script src="/libs/technolibs/index.js"></script>
 	<script src="main.js"></script>
 </head>
 <body>
-	<!-- Emmet -->
-	<h3 id="helloWorld">Привет, залогинься!</h3>
-	<form action="/users" method="post" onsubmit="onSubmit(this); return false;">
-		<input required placeholder="Ваш email" type="email"  name="email" value="" />
-		<input required placeholder="Ваше имя" type="text" name="user" value="" />
-		<button name="name">
-			Привет!
-		</button>
-	</form>
+
+	<div id="jsLogin">
+		<h3>Привет, залогинься!</h3>
+		<form onsubmit="onLogin(this); return false;">
+			<input required placeholder="Ваш email" type="email"  name="email" value="" />
+			<input required placeholder="Ваше имя" type="text" name="user" value="" />
+			<button name="name">
+				Привет!
+			</button>
+		</form>
+	</div>
+
+	<div id="jsChat" hidden>
+		<h3 id="jsTitle">Ты в чате, %username%!</h3>
+		<div id="jsMessages" class="chat">
+			<div class="cssload-wrap">
+				<div class="cssload-cssload-spinner"></div>
+			</div>
+		</div>
+		<form onsubmit="onChat(this); return false;">
+			<textarea required class="chat__input" name="message" cols="30" rows="10"></textarea>
+			<button name="name">
+				Отправить
+			</button>
+		</form>
+	</div>
 </body>
 </html>

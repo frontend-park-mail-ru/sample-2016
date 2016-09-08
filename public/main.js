@@ -12,7 +12,7 @@ function onSubmit (form) {
 
 	if (result === '100') {
 		form.hidden = true;
-		window.helloWorld.innerHTML = hello(data.user); 
+		window.helloWorld.innerHTML = hello(data.user);
 	}
 
 	console.log(data, result);

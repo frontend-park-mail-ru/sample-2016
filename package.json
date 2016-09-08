@@ -18,6 +18,8 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "technologger": "1.0.1"
+	"technolibs": "1.1.0",
+    "json-schema-mock": "0.0.8",
+	"techno-gendoc": "0.3.0"
   }
 }
