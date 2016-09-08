@@ -3,17 +3,17 @@ module.exports =  {
 	"description": "Сообщение",
 
 	"properties": {
-		"login": {
+		"email": {
 			"description": "Логин автора",
 			"type": "string",
 			"minLength": 6,
- 			"maxLength": 12
+ 			"maxLength": 50
 		},
-		"text": {
+		"message": {
 			"description": "Текст сообщения",
 			"type": "string",
 			"minLength": 2,
- 			"maxLength": 256
+ 			"maxLength": 140
 		},
 		"id": {
 			"description": "Идентификатор сообщения",
@@ -22,5 +22,5 @@ module.exports =  {
 		}
 	},
 
-	"required": ["login", "text", "id"]
+	"required": ["email", "message", "id"]
 };

@@ -3,12 +3,12 @@ exports.post = {
 	"description": "Метод создает новое сообщение",
 	"parameters": [
 		{
-			"name": "login",
+			"name": "email",
 			"description": "Имя пользователя",
 			"type": "string"
 		},
 		{
-			"name": "text",
+			"name": "message",
 			"description": "Текст сообщения",
 			"type": "string"
 		}
@@ -43,11 +43,11 @@ exports.post = {
 					return 'не корректный id';
 				}
 
-				if (typeof res.text !== 'string') {
+				if (typeof res.message !== 'string') {
 					return 'не корректный текст сообщения';
 				}
 
-				if (typeof res.login !== 'string') {
+				if (typeof res.email !== 'string') {
 					return 'не корректный login';
 				}
 
