@@ -1,5 +1,4 @@
 let express = require('express');
-let technologger = require('technologger');
 let parser = require('body-parser');
 let app = express();
 let technoDoc = require('techno-gendoc');
