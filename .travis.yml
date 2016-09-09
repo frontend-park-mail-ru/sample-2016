@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-    - 6
-
+- 6
 deploy:
-    provider: heroku
-    api_key: efd093b4-d071-4ec3-8185-dfba83150620
-    app: frontend-2016-2
+  provider: heroku
+  api_key:
+    secure: M/AHm69viI+FSDxodLDXsSwfwBqwosRYjq+ueP28DKlW4YtG27rCsNSZnwhfN839NJ1YWoCyBCs7CKakesfXHWsgUJXSBSArSf7s5+1xShjIvcgjcGcr6pymMBv6577Db8VyalOyd6reN5YwovpG+3z4kUhXg+FHfSdfh6tTi9L3Jh9kZlaeHwYNvmyR4tUtNVw8s71uuzGZa6A4GZ1RK6D1PoADHh+RBN/5CtvCI03u8ekjOexRc2VH9CkhHo9oJdKN+xbPQe6ZD6Gy0ODLtQzPm1jRDpqRD2JSNEkqFYAiIyUtrzKdjoZzxy0KoqBWkny9WTXPlx1U69U2CliW07nJ+SljFnXFBgR8iWCnCK4TM5tnMqhuLk4AcNiqOhK5P66nmy3SN67E1Fy+PWrYD5U4KixPqD/yJHFpNYDtEB9MYbKTWahzpvWge3+shtFOEg8wsZdzGBaTro6hA6jKrhD4JZJBnFpNCIoGFiRe0kjmeQD1jIe78zWyN7dbwz2BA/gwnCE/THY+pn+/65qaOQpeCXxxvT9aICm32rxfCYf/bJHxm7A4U9o0HYlu6NJncF67P/NbsXKfxM2yTCqF7sftGZuEuD3ZV8Nuf/yCPpISQXG0PgFHIS6MnFz7NttN/0JzrRL0NFwQf3/ota4MQRSy0cmeihOa+S+fshHuptU=
+  app: frontend-2016-2
