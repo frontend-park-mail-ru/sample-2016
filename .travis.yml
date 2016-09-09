@@ -1,3 +1,8 @@
 language: node_js
 node_js:
     - 6
+
+deploy:
+    provider: heroku
+    api_key: efd093b4-d071-4ec3-8185-dfba83150620
+    app: frontend-2016-2
