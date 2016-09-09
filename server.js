@@ -11,7 +11,6 @@ technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
 app.use('/libs', express.static('node_modules'));
-app.use(technologger);
 
 app.post('/api/messages', (req, res) => {
 	technolibs.publish(req.body).then(body => res.json(req.body));
