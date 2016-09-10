@@ -2,10 +2,8 @@
 
 let userData = {};
 
-
-//TODO: реализовать filter
 function filter (str, rules = ['КЕК']) {
-	return str;
+	return `//TODO: реализовать filter`;
 }
 
 function onLogin (form, block) {
