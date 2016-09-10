@@ -20,6 +20,6 @@
     "express": "^4.14.0",
 	"technolibs": "1.1.0",
     "json-schema-mock": "0.0.8",
-	"techno-gendoc": "0.3.0"
+	"techno-gendoc": "0.4.1"
   }
 }
