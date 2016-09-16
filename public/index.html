@@ -5,19 +5,19 @@
 	<title>Frontend privet</title>
 	<link rel="stylesheet" href="/css/milligram.min.css"/>
 	<link rel="stylesheet" href="/css/main.css" />
-	<script src="/libs/technolibs/index.js"></script>
-	<script src="main.js"></script>
+
+	<link rel="stylesheet" href="/components/button/button.css" />
 </head>
 <body>
 
 	<div id="jsLogin">
 		<h3>Привет, залогинься!</h3>
-		<form onsubmit="onLogin(this); return false;">
+		<form class="js-form" onsubmit="onLogin(this); return false;">
 			<input required placeholder="Ваш email" type="email"  name="email" value="" />
 			<input required placeholder="Ваше имя" type="text" name="user" value="" />
-			<button name="name">
+			<!-- <button name="name">
 				Привет!
-			</button>
+			</button> -->
 		</form>
 	</div>
 
@@ -35,5 +35,11 @@
 			</button>
 		</form>
 	</div>
+
+
+	<script src="/components/button/button.js"></script>
+
+	<script src="/libs/technolibs/index.js"></script>
+	<script src="main.js"></script>
 </body>
 </html>

@@ -1,10 +1,26 @@
 (function () {
 	'use strict';
 
+	//import
+	let Button = window.Button;
+	let formEl = document.querySelector('.js-form');
+
 	let userData = {};
 
-	function filter (str, rules = ['КЕК']) {
 
+	// Пример использования компоненты
+	let formButton = new Button({
+		text: 'Привет!',
+		attrs: {
+			name: 'name'
+		}
+	});
+
+	Button.include(formButton, formEl);
+
+
+
+	function filter (str, rules = ['КЕК']) {
 		return `//TODO: реализовать filter`;
 	}
 
