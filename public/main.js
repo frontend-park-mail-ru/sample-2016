@@ -2,22 +2,22 @@
 	'use strict';
 
 	//import
-	let Button = window.Button;
-	let formEl = document.querySelector('.js-form');
+	if (typeof window === 'object') {
+		let Button = window.Button;
+		let formEl = document.querySelector('.js-form');
 
-	let userData = {};
+		let userData = {};
 
+		// Пример использования компоненты
+		let formButton = new Button({
+			text: 'Привет!',
+			attrs: {
+				name: 'name'
+			}
+		});
 
-	// Пример использования компоненты
-	let formButton = new Button({
-		text: 'Привет!',
-		attrs: {
-			name: 'name'
-		}
-	});
-
-	Button.include(formButton, formEl);
-
+		Button.include(formButton, formEl);
+	}
 
 
 	function filter (str, rules = ['КЕК']) {
