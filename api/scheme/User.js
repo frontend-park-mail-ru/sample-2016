@@ -1,13 +1,13 @@
 module.exports =  {
-	"type": "object",
-	"description": "Пользователи",
+  "type": "object",
+  "description": "Пользователи",
 
-	"properties": {
+  "properties": {
     "id": {
-			"description": "Id авторизационной сессии",
-			"type": "integer",
-			"minimum": 0
-		},
+      "description": "Id авторизационной сессии",
+      "type": "integer",
+      "minimum": 0
+    },
     "email": {
       "description": "Email пользователя",
       "type": "string",
@@ -15,18 +15,18 @@ module.exports =  {
       "maxLength": 50
     },
     "login": {
-			"description": "Логин пользователя",
-			"type": "string",
-			"minLength": 1,
-			"maxLength": 50
-		},
+      "description": "Логин пользователя",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50
+    },
     "password": {
       "description": "Пароль пользователя",
       "type": "string",
       "minLength": 1,
       "maxLength": 50
     },
-	},
+  },
 
-	"required": ["id", "email", "login", "password"]
+  "required": ["id", "email", "login", "password"]
 };

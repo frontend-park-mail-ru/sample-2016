@@ -4,22 +4,15 @@ exports.get = {
 
 	"responses": {
 		"200": {
+			"description": "Id сессии",
 			"schema": {
-				"description": "Id сессии",
-				"type": "integer",
-				"items": {
-					"$ref": "#/definitions/Session"
-				}
+				"$ref": "#/definitions/Session"
 			}
 		},
-    "401": {
-      "schema": {
-        "description": "Ошибка",
-        "type": "string"
-      }
-    }
+		"401": {
+			"description": "Ошибка"
+		}
 	},
-
 	"x-amples": [{
 		"description": "получение сессии",
 		"request": {
@@ -30,10 +23,10 @@ exports.get = {
 			"headers": {
 				"content-type": "application/json"
 			},
-      "data" : {
-        "id" : Math.floor(Math.random() * (1000))
-      },
-      "validator": function (res) {
+			"data" : {
+				"id" : Math.floor(Math.random() * 10000)
+			},
+			"validator": function (res) {
 
 				if (typeof res.id !== 'number' ) {
 					return 'не корректный id';
@@ -41,7 +34,7 @@ exports.get = {
 
 				return true;
 			}
-    }
+		}
 	}]
 
 };
@@ -63,9 +56,9 @@ exports.post = {
 	],
 	"responses": {
 		"200": {
+			"description": "Id сессии",
 			"schema": {
-				"description": "Id сессии",
-				"type": "#/definitions/Session"
+				"$ref": "#/definitions/Session"
 			}
 		},
 		"400": {
@@ -103,9 +96,7 @@ exports.delete = {
 
 	"responses": {
 		"200": {
-			"schema": {
-				"description": "Успешный запрос"
-			}
+			"description": "Успешный запрос"
 		},
 		"400": {
 			"description": "Ошибка при выполнении запроса"
@@ -113,7 +104,7 @@ exports.delete = {
 	},
 	"x-amples": [{
 		"description": "логаут пользователя",
-    "request": {
+		"request": {
 			"params": {}
 		},
 		"response": {
