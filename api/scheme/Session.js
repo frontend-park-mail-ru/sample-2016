@@ -1,15 +1,14 @@
 module.exports =  {
 	"type": "object",
-	"description": "Получение сессии",
+	"description": "Сессия",
 
 	"properties": {
-		"token": {
+		"id": {
 			"description": "Id авторизационной сессии",
-			"type": "string",
-			"minLength": 6,
- 			"maxLength": 50
+			"type": "integer",
+			"minimum": 0
 		}
 	},
 
-	"required": ["token"]
+	"required": ["id"]
 };
