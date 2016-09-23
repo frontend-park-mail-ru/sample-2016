@@ -6,11 +6,15 @@ let path = require('path');
 
 let technolibs = require('technolibs');
 
-app.use('/', express.static('public'));
+app.use('/', express.static('public', { maxAge: 1 }));
 technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
 app.use('/libs', express.static('node_modules'));
+
+app.post('/api/login', (req, res) => {
+	res.send(technoDoc.mock(require('./api/scheme/Session')))
+});
 
 app.post('/api/messages', (req, res) => {
 	technolibs.publish(req.body).then(body => res.json(req.body));

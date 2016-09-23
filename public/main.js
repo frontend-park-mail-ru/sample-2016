@@ -1,102 +1,71 @@
 (function () {
 	'use strict';
-
-	//import
+	
 	if (typeof window === 'object') {
+	
+		//import
 		let Button = window.Button;
-		let formEl = document.querySelector('.js-form');
-
-		let userData = {};
-
-		// Пример использования компоненты
-		let formButton = new Button({
-			text: 'Привет!',
-			attrs: {
-				name: 'name'
+		let Chat = window.Chat;
+		let Form = window.Form;
+		
+		let loginPage = document.querySelector('.js-login');
+		let chatPage = document.querySelector('.js-chat');
+		
+		let form = new Form({
+			el: document.createElement('div'),
+			data: {
+				title: 'Login',
+				fields: [
+					{
+						name: 'user',
+						type: 'text'
+					},
+					{
+						name: 'email',
+						type: 'email'
+					}
+				],
+				controls: [
+					{
+						text: 'Войти',
+						attrs: {
+							type: 'submit'
+						}
+					}
+				]
 			}
 		});
-
-		Button.include(formButton, formEl);
-	}
-
-
-	function filter (str, rules = ['КЕК']) {
-		return `//TODO: реализовать filter`;
-	}
-
-	function onLogin (form, block) {
-		userData = {
-			user: form.elements['user'].value,
-			email: form.elements['email'].value
-		};
-
-		 jsLogin.hidden = true;
-		 jsChat.hidden = false;
-
-		 if (userData.user) {
-			 userData.user = filter(userData.user);
-			 jsTitle.innerHTML = jsTitle.innerHTML
-			 	.replace('%username%', userData.user);
-		 }
-
-		 subscribe();
-	}
-
-	function createMessage (opts, isMy = false) {
-		let message = document.createElement('div');
-		let email = document.createElement('div');
-
-		message.classList.add('chat__message');
-		email.classList.add('chat__email');
-
-		if (isMy) {
-			message.classList.add('chat__message_my');
-		} else {
-			message.style.backgroundColor = `#${technolibs.colorHash(opts.email || '')}`;
-		}
-		message.innerHTML = opts.message;
-		email.innerHTML = opts.email;
-		message.appendChild(email);
-
-
-		return message;
-	}
-
-	function onChat (form) {
-		let data = {
-			message: form.elements['message'].value,
-			email: userData.email
-		};
-
-		let result = technolibs.request('/api/messages', data);
-		form.reset();
-	}
-
-	function renderChat (items) {
-		jsMessages.innerHTML = '';
-		items.forEach(item => {
-			let message = createMessage(item, item.email === userData.email);
-			jsMessages.appendChild(message);
+		
+		let chat = new Chat({
+			el: document.createElement('div'),
 		});
-		jsMessages.scrollTop = jsMessages.scrollHeight;
-	}
+		
+		form.on('submit', event => {
+			event.preventDefault();
+			
+			let formData = form.getFormData();
+			technolibs.request('/api/login', formData);
 
-	function subscribe () {
-		technolibs.onMessage(data => {
-			renderChat(Object.keys(data).map(key => data[key]));
+			chat.set({
+				username: formData.user,
+				email: formData.email
+			})
+			.render();
+			
+			chat.subscribe();
+			
+			loginPage.hidden = true;
+			chatPage.hidden = false;
 		});
-	}
-
-	function hello(text) {
-		return 'Привет, ' + text;
+		
+		loginPage.appendChild(form.el);
+		chatPage.appendChild(chat.el);
+		
+		loginPage.hidden = false;
 	}
 
 	if (typeof exports === 'object') { // for NodeJS
-		exports.hello = hello;
 		exports.filter = filter;
-	} else {
-		window.onLogin = onLogin;
-		window.onChat = onChat;
 	}
 
 })();
