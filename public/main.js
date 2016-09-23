@@ -64,8 +64,4 @@
 		loginPage.hidden = false;
 	}
 
-	if (typeof exports === 'object') { // for NodeJS
-		exports.filter = filter;
-	}
-
 })();

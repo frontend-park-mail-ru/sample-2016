@@ -20,6 +20,10 @@
 			this._updateHtml();
 		}
 		
+		/**
+		 * Обновить данные компонента
+		 * @param {object} data - данные компонента
+		 */
 		set (data) {
 			this.data = data;
 			

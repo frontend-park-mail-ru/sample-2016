@@ -21,12 +21,19 @@
 			this._installControls();
 		}
 		
+		/**
+		 * Вернуть поля формы
+		 * @return {string}
+		 */
 		_getFields () {
 			let { fields = [] } = this.data;
 			
 			return fields.map(field => { return `<input type="text" name="${field.name}">` }).join(' ')
 		}
 		
+		/**
+		 * Обновить html компонента
+		 */
 		_updateHtml () {
 			this.el.innerHTML = `
 				<form>
@@ -40,6 +47,9 @@
 			`;
 		}
 		
+		/**
+		 * Вставить управляющие элементы в форму
+		 */
 		_installControls () {
 			let { controls = [] } = this.data;
 			
@@ -49,11 +59,19 @@
 			});
 		}
 		
+		/**
+		 * Подписка на событие
+		 * @param {string} type - имя события
+		 * @param {function} callback - коллбек
+		 */
 		on (type, callback) {
 			this.el.addEventListener(type, callback);
 		}
 		
-		//TODO вернуть данные формы
+		/**
+		 * Взять данные формы
+		 * @return {object}
+		 */
 		getFormData () {
 			let form = this.el.querySelector('form');
 			let elements = form.elements;
