@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "lint": "./node_modules/.bin/eslint **/*.js",
+    "lint": "./node_modules/.bin/eslint public/components/**/*.js",
     "fest": "fest-build --dir=public/components/"
   },
   "repository": {
@@ -25,7 +25,7 @@
     "techno-gendoc": "0.4.1"
   },
   "devDependencies": {
-    "eslint": "3.5.0",
+    "eslint": "^3.6.1",
     "eslint-config-airbnb": "11.1.0",
     "eslint-plugin-import": "1.15.0",
     "eslint-plugin-jsx-a11y": "2.2.2",
