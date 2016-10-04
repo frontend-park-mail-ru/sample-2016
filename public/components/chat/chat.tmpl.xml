@@ -14,7 +14,7 @@
 	<!-- Объявляем элемент сообщений -->
 	<fest:set name="chat__messages">
 		<fest:for iterate="params" index="i" value="message">
-			<div class="chat__message {params.isMy ? ' chat__message_my' : ''}" style="{params.background}">
+			<div class="chat__message {message.isMy ? ' chat__message_my' : ''}" style="background: #{message.background}">
 				<fest:value>message.message</fest:value>
 				<div class="chat__email">
 					<fest:value>message.email</fest:value>

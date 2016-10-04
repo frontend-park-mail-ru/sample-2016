@@ -4,7 +4,8 @@
 	// import
 	let Button = window.Button;
 	let Form = window.Form;
-	
+	// let technolibs = window.technolibs;
+
 	class Chat {
 		
 		/**
@@ -68,6 +69,25 @@
 		}
 
 		/**
+		 * Подписываем чат на сетевые и пользовательские события
+		 */
+		subscribe () {
+			technolibs.onMessage(this._updateMessages.bind(this));
+		}
+
+		/**
+		 * Подписываемся на события чата
+		 * @param  {string}   type     
+		 * @param  {Function} callback 
+		 * @return {Chat}            
+		 */
+		on (type, callback) {
+			this.el.addEventListener(type, callback);
+
+			return this;
+		}
+
+		/**
 		 * Обоабатываем отпрвку сообщения из чата
 		 */
 		_sendMessage (event) {
@@ -112,25 +132,21 @@
 		}
 
 		/**
-		 * Подписываем чат на сетевые и пользовательские события
+		 * Обновляем список сообщений
+		 * @param {Object} data
 		 */
-		subscribe () {
-			technolibs.onMessage(data => {
-				this.data.messages = Object.keys(data).map(key => data[key]);
-				this._renderMessages();
+		_updateMessages (data) {
+			let messages = Object.keys(data).map(key => {
+				let entry = data[key];
+
+				entry.background = technolibs.colorHash(entry.email);
+				entry.isMy = this.data.email === entry.email;
+				
+				return entry;
 			});
-		}
 
-		/**
-		 * Подписываемся на события чата
-		 * @param  {string}   type     
-		 * @param  {Function} callback 
-		 * @return {Chat}            
-		 */
-		on (type, callback) {
-			this.el.addEventListener(type, callback);
-
-			return this;
+			this.set({messages});
+			this._renderMessages();
 		}
 	}
 	
