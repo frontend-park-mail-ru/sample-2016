@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-	"lint": "./node_modules/.bin/eslint **/*.js"
+    "lint": "./node_modules/.bin/eslint **/*.js",
+    "fest": "fest-build --dir=public/components/"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "eslint-config-airbnb": "11.1.0",
     "eslint-plugin-import": "1.15.0",
     "eslint-plugin-jsx-a11y": "2.2.2",
-    "eslint-plugin-react": "6.2.2"
+    "eslint-plugin-react": "6.2.2",
+    "fest": "^0.12.1"
   }
 }

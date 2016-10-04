@@ -10,9 +10,10 @@
 		 * Конструктор класса Form
  		 */
 		constructor (options = { data: {} }) {
+			this.template = window.fest['form/form.tmpl'];
 			this.data = options.data;
 			this.el = options.el;
-			
+
 			this.render();
 		}
 
@@ -22,29 +23,10 @@
 		}
 		
 		/**
-		 * Вернуть поля формы
-		 * @return {string}
-		 */
-		_getFields () {
-			let { fields = [] } = this.data;
-			
-			return fields.map(field => { return `<input type="text" name="${field.name}">` }).join(' ')
-		}
-		
-		/**
 		 * Обновить html компонента
 		 */
 		_updateHtml () {
-			this.el.innerHTML = `
-				<form>
-					<h1>${this.data.title}</h1>
-					<div>
-						${this._getFields()}
-					</div>
-					<div class="js-controls">
-					</div>
-				<form>
-			`;
+			this.el.innerHTML = this.template(this.data);
 		}
 		
 		/**
