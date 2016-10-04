@@ -2,20 +2,34 @@
 	'use strict';
 
 	class View {
-		constructor(options) {
-			this.tagName = options.tagName || 'div';
-			this._el = document.createElement();
+		constructor(options = {}) {
+			if (options.createElement) {
+				this.tagName = options.tagName || 'div';
+				this._el = document.createElement(this.tagName);
+			}
 		}
 
-		show() {
+		init(options = {}) {
+			this.setAttrs(options.attrs);
+		}
+
+		pause(options = {}) {
+			this.hide();
+		}
+
+		resume(options = {}) {
+			this.show();
+		}
+
+		show(options = {}) {
 			this._el.hidden = false;
 		}
 
-		hide() {
+		hide(options = {}) {
 			this._el.hidden = true;
 		}
 
-		render() {
+		render(options = {}) {
 
 		}
 
@@ -32,7 +46,7 @@
 			this._el = el;
 		}
 
-		setAttrs(attrs) {
+		setAttrs(attrs = {}) {
 			Object.keys(attrs).forEach(name => {
 				this._el.setAttribute(name, attrs[name]);
 			})
