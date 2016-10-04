@@ -18,11 +18,13 @@
 				fields: [
 					{
 						name: 'user',
-						type: 'text'
+						type: 'text',
+						placeholder: 'Ваш логин'
 					},
 					{
 						name: 'email',
-						type: 'email'
+						type: 'email',
+						placeholder: 'Ваш email'
 					}
 				],
 				controls: [

@@ -17,11 +17,21 @@
 			this.render();
 		}
 
+		/**
+		 * Обновляем HTML
+		 */
 		render () { 
 			this._updateHtml()
 			this._installControls();
 		}
-		
+
+		/**
+		 * Обнуляем форму
+		 */
+		reset () {
+			this.el.querySelector('form').reset();
+		}
+
 		/**
 		 * Обновить html компонента
 		 */
