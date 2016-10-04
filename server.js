@@ -16,6 +16,10 @@ app.get('/api/session', (req, res) => {
 	res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
+app.post('/api/session', (req, res) => {
+	res.send(technoDoc.mock(require('./api/scheme/Session')))
+});
+
 
 app.post('/api/messages', (req, res) => {
 	technolibs.publish(req.body).then(body => res.json(req.body));
