@@ -25,15 +25,20 @@
 			return this;
 		}
 
-		start() {
+		start(state = {}) {
+			console.dir(this._paths);
 			window.onpopstate = function (event) {
 				let state = event.state;
 				let path = window.location.pathname;
 				this.onroute(path, state);
 			}.bind(this);
+
+			const path = window.location.pathname;
+			this.onroute(path, state);
 		}
 
 		onroute(path, state = {}) {
+			console.info(`[ROUTER] go to ${path}`);
 			let info = this._paths.find(p => {
 				let keys = p.regex(path);
 				if (keys) {

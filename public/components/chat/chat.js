@@ -11,7 +11,7 @@
 		/**
 		 * Конструктор класса Chat
 		 */
-		constructor({data = {messages: []}, el}) {
+		constructor({data = {messages: [], username: '', email: ''}, el}) {
 			super('form');
 			this.template = window.fest['chat/chat.tmpl'];
 			this.data = data;
@@ -26,7 +26,6 @@
 		 */
 		init() {
 			this._updateHtml();
-
 			this.form = new Form({
 				el: this._el.querySelector('.js-chat-form'),
 				data: {
@@ -48,6 +47,7 @@
 				}
 			});
 			this.form.on('submit', this._sendMessage.bind(this));
+
 		}
 
 		/**
@@ -65,8 +65,7 @@
 		 */
 		set(data) {
 			this.data = Object.assign({}, this.data, data);
-			this._el.innerHTML = this.template(this.data);
-			return this;
+			return this.render();
 		}
 
 		/**
@@ -96,7 +95,6 @@
 		 */
 		_updateHtml() {
 			this.data.username = this.data.username || this.data.user || 'Anon';
-			console.log(this.data);
 			this._el.innerHTML = this.template(this.data);
 		}
 
