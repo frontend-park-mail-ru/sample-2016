@@ -1,74 +1,66 @@
 (function () {
 	'use strict';
-	
+
 	// import
-	let Button = window.Button;
-	
-	class Form {
-		
+	const Block = window.Block;
+	const Button = window.Button;
+
+	class Form extends Block {
+
 		/**
 		 * Конструктор класса Form
- 		 */
-		constructor (options = { data: {} }) {
+		 */
+		constructor(options = {data: {}}) {
+			super('form');
 			this.template = window.fest['form/form.tmpl'];
 			this.data = options.data;
-			this.el = options.el;
-
+			this._el = options.el;
 			this.render();
 		}
 
 		/**
 		 * Обновляем HTML
 		 */
-		render () { 
-			this._updateHtml()
+		render() {
+			this._updateHtml();
 			this._installControls();
 		}
 
 		/**
 		 * Обнуляем форму
 		 */
-		reset () {
-			this.el.querySelector('form').reset();
+		reset() {
+			this._el.querySelector('form').reset();
 		}
 
 		/**
 		 * Обновить html компонента
 		 */
-		_updateHtml () {
-			this.el.innerHTML = this.template(this.data);
+		_updateHtml() {
+			this._el.innerHTML = this.template(this.data);
 		}
-		
+
 		/**
 		 * Вставить управляющие элементы в форму
 		 */
-		_installControls () {
-			let { controls = [] } = this.data;
-			
+		_installControls() {
+			let {controls = []} = this.data;
+
 			controls.forEach(data => {
-				let control = new Button({text: data.text}).render();
-				this.el.querySelector('.js-controls').appendChild(control.el);
+				let control = new Button({text: data.text});
+				this._el.querySelector('.js-controls').appendChild(control._get());
 			});
 		}
-		
-		/**
-		 * Подписка на событие
-		 * @param {string} type - имя события
-		 * @param {function} callback - коллбек
-		 */
-		on (type, callback) {
-			this.el.addEventListener(type, callback);
-		}
-		
+
 		/**
 		 * Взять данные формы
 		 * @return {object}
 		 */
-		getFormData () {
-			let form = this.el.querySelector('form');
+		getFormData() {
+			let form = this._el.querySelector('form');
 			let elements = form.elements;
 			let fields = {};
-			
+
 			Object.keys(elements).forEach(element => {
 				let name = elements[element].name;
 				let value = elements[element].value;
@@ -84,7 +76,7 @@
 		}
 
 	}
-	
+
 	//export
 	window.Form = Form;
 })();
