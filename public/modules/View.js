@@ -56,6 +56,10 @@
 			return this._el.outerHTML;
 		}
 
+		setRouter (router) {
+			this.router = router;
+		}
+
 	}
 
 	window.View = View;

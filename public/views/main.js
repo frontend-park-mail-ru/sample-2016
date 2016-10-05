@@ -3,8 +3,6 @@
 
 	const View = window.View;
 	const Form = window.Form;
-	const RouterInstance = window.RouterInstance;
-
 
 	class MainView extends View {
 		constructor(options = {}) {
@@ -52,7 +50,7 @@
 					email: formData.email
 				};
 
-				RouterInstance.go('/chat', state);
+				this.router.go('/chat', state);
 			});
 		}
 	}

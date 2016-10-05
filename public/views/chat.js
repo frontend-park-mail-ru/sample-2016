@@ -3,7 +3,6 @@
 
 	const View = window.View;
 	const Chat = window.Chat;
-	const RouterInstance = window.RouterInstance;
 
 	class ChatView extends View {
 		constructor(options = {}) {

@@ -129,7 +129,7 @@
 			let messages = Object.keys(data).map(key => {
 				let entry = data[key];
 
-				entry.background = technolibs.colorHash(entry.email);
+				entry.background = technolibs.colorHash(entry.email || '');
 				entry.isMy = this.data.email === entry.email;
 
 				return entry;
