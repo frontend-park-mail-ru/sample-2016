@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node test.js",
     "lint": "./node_modules/.bin/eslint public/components/**/*.js",
-    "fest": "./node_modules/.bin/fest-build --dir=public\\components\\"
+    "fest": "./node_modules/.bin/fest-build --dir=public/components/"
   },
   "repository": {
     "type": "git",
