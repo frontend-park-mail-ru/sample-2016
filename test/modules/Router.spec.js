@@ -1,7 +1,15 @@
 'use strict';
 
-describe("A test suite", function() {
-   beforeEach(function() { });
-   afterEach(function() { });
-   it('should fail', function() { expect(true).to.be.false; });
+(function () {
+
+})();
+
+beforeEach(function () {
+	this.router = new Router();
+})
+
+describe('Класс Router', function() {
+	it ('instance of Router is singletone', function () {
+		expect(this.router === new Router).to.be.true;
+	});
 });
