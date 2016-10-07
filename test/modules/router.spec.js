@@ -8,13 +8,17 @@
 			view = this;
 		}
 
-		init () {}
+		init() {
+		}
 
-		pause() {}
+		pause() {
+		}
 
-		resume() {}
+		resume() {
+		}
 
-		setRouter() {}
+		setRouter() {
+		}
 	}
 
 	beforeEach(function () {
@@ -30,15 +34,15 @@
 
 	describe('Router.fn.start', function () {
 
-		it ('Не происходит инстанцирования View до start', function () {
-			this.router.route('/hello', TestView);
+		it('Не происходит инстанцирования View до start', function () {
+			this.router.addRoute('/hello', TestView);
 			expect(view).toBeUndefined();
 		});
 
 		it('Переходит на текущий роут', function () {
 			history.pushState({}, '', '/hello');
 
-			this.router.route('/hello', TestView);
+			this.router.addRoute('/hello', TestView);
 			spyOn(TestView.prototype, 'resume');
 			this.router.start();
 
@@ -47,4 +51,3 @@
 	})
 
 })();
-

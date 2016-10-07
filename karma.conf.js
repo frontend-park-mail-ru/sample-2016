@@ -32,7 +32,7 @@ module.exports = function (config) {
 		browsers: ['Chrome'],
 		coverageReporter: {
 			type: 'html',
-			dir: 'coverage/'
+			dir: 'public/coverage/'
 		}
 	});
 };

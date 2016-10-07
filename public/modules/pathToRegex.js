@@ -1,9 +1,9 @@
 (function () {
 	'use strict';
 
-	const pathToRegex = function (path) {
+	const pathToRegex = function (pathname) {
 		let keyNames = [];
-		let parts = path
+		let parts = pathname
 			.split('/')
 			.filter(part => part)
 			.map(part => {
@@ -14,26 +14,19 @@
 				return new RegExp(`^\/${part}`, `i`);
 			});
 
-		// console.dir(keyNames);
-		// console.dir(parts);
 
-		return function (url) {
+		return function (path) {
 
 			let keys = [];
 			let check = parts.every((regexp, step) => {
-				// console.dir({
-				// 	step,
-				// 	url,
-				// 	regexp
-				// });
-				let tmp = regexp.exec(url);
+				let tmp = regexp.exec(path);
 				if (!tmp) {
 					return false;
 				}
 				if (tmp.length === 2) {
 					keys.push(tmp[1]);
 				}
-				url = url.replace(regexp, '');
+				path = path.replace(regexp, '');
 				return true;
 			});
 

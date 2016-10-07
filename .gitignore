@@ -1,4 +1,4 @@
 node_modules/
-coverage/
-public/api
+public/coverage/
+public/api/
 *.log

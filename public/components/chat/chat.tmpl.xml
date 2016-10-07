@@ -2,7 +2,7 @@
 
 	<!-- Объявляем блок чата -->
 	<fest:set name="chat">
-		<h3 class="js-title">Ты в чате, <fest:value>params.username</fest:value>!</h3>
+		<h3 class="js-title">Ты в чате,<fest:space/><fest:value>params.username</fest:value>!</h3>
 		<div class="js-messages chat">
 			<div class="cssload-wrap">
 				<div class="cssload-cssload-spinner"></div>

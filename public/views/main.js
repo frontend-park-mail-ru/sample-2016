@@ -55,6 +55,8 @@
 		}
 	}
 
+
+	// export
 	window.MainView = MainView;
 
 })();
