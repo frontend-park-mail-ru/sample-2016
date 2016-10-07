@@ -38,10 +38,16 @@
 		 * @param {Object} [state={}] - Объект state, который был передан в событие popstate для объекта window
 		 */
 		navigate(pathname, state = {}) {
-			// TODO: дописать реализацию
-			// если вьюха не была создана, нужно её создать и проинициализировать
-			// потом нужно у view вызвать метод resume и передать туда объект state и те ключи, которые закодированы в pathname
+			let keys = this.regex(pathname);
 
+			if (!this._view) {
+				let view = new this.View(this.options);
+				view.init(this.options);
+				view.setRouter(this.__router);
+				this._view = view;
+			}
+
+			this._view.resume(Object.assign(state, keys));
 		}
 
 		/**

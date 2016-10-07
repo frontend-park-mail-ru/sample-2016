@@ -47,7 +47,8 @@
 				this.onroute(pathname, state);
 			}.bind(this);
 
-			// TODO: дописать реализацию, чтобы проходили тесты
+			const pathname = window.location.pathname;
+			this.onroute(pathname, state);
 		}
 
 		/**
