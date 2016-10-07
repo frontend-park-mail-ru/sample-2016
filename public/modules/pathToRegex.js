@@ -1,6 +1,7 @@
 (function () {
 	'use strict';
 
+	// TODO сделать так, чтобы все тесты проходили
 	const pathToRegex = function (pathname) {
 		let keyNames = [];
 		let parts = pathname
