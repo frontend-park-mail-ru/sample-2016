@@ -1,29 +1,7 @@
 (function () {
 	'use strict';
 
-	class View {
-		constructor() {
-
-		}
-
-		init() {
-
-		}
-
-		resume() {
-
-		}
-
-		pause() {
-
-		}
-
-		setRouter(router) {
-			this.router = router;
-		}
-	}
-
-	describe('View.fn.match', function () {
+	describe('Route.fn.match', function () {
 		beforeEach(function () {
 			this.route = new Route('/path/:key', View);
 		});
@@ -44,11 +22,12 @@
 		});
 	})
 
-	describe('View.fn.navigate', function () {
+	describe('Route.fn.navigate', function () {
 		beforeEach(function () {
 			this.route = new Route('/path/:key', View);
 			spyOn(View.prototype, 'init');
 			spyOn(View.prototype, 'resume');
+			spyOn(View.prototype, 'setRouter');
 		});
 
 		it('при первом переходе на роут создаётся инстанс view', function () {
@@ -73,6 +52,27 @@
 			expect(View.prototype.resume).toHaveBeenCalledWith({foo: 'bar', key: '123'});
 		});
 
+		it('при переходе на роут во вновь созданную view прокидывается объект роутера, установленный вызовом метода setRoute()', function () {
+			let router = {foo: 'bar'};
+			this.route.setRouter(router);
+			this.route.navigate('/path/123');
+			expect(View.prototype.setRouter).toHaveBeenCalledWith(router);
+		});
+
+	});
+
+	describe('Route.fn.leave', function () {
+		beforeEach(function () {
+			this.route = new Route('/path/:key', View);
+			spyOn(View.prototype, 'pause');
+		});
+
+		it('При покидании роута у view вызывается метод pause', function () {
+			this.route.navigate('/path/123');
+			this.route.leave();
+			expect(View.prototype.pause).toHaveBeenCalled();
+		});
 	})
+
 
 })();
