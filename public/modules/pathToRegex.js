@@ -48,10 +48,7 @@
 	};
 
 
-	if (typeof module === 'object') {
-		module.exports = pathToRegex;
-	} else {
-		window.pathToRegex = pathToRegex;
-	}
+	// export
+	window.pathToRegex = pathToRegex;
 
 })();

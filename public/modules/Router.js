@@ -1,7 +1,6 @@
 (function () {
 	'use strict';
 
-	const pathToRegex = window.pathToRegex;
 	const history = window.history;
 
 	class Router {
@@ -9,6 +8,9 @@
 			if (Router.__instance) {
 				return Router.__instance;
 			}
+
+			//TODO: Сущий адище, нам нужно менеджерить депсы
+			this.pathToRegex = window.pathToRegex;
 
 			this._paths = [];
 			this._viewStorage = new Map();
@@ -22,7 +24,7 @@
 			let p = {
 				id: 'p' + this._id,
 				path,
-				regex: pathToRegex(path),
+				regex: this.pathToRegex(path),
 				View: view,
 				options
 			};
