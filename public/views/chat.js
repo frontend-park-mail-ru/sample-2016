@@ -15,16 +15,9 @@
 			if (!options.username && !options.email) {
 				return this.router.go('/');
 			}
-			this._component = new Chat({
-				el: this._el,
-				data: {
-					messages: [],
-					username: options.username,
-					email: options.email
-				}
-			});
-			this._component.render();
-			this._component.subscribe();
+
+			// TODO: дописать реализацию
+
 			this.show();
 		}
 	}
