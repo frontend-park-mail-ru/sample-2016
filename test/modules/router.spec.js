@@ -96,4 +96,18 @@
 		});
 	});
 
+	describe('Router.fn.onroute', function () {
+		beforeEach(function () {
+			this.router.addRoute('/path1', View);
+			this.router.addRoute('/path2', View);
+			this.router.start();
+			spyOn(this.router.routes[1], 'navigate');
+		});
+
+		it('метод переходит на один из роутов', function () {
+			this.router.go('/path2');
+			expect(this.router.routes[1].navigate).toHaveBeenCalledWith('/path2', {});
+		})
+	});
+	
 })();
