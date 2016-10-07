@@ -84,6 +84,14 @@
 		}
 
 		/**
+		 * Позволяет установить свою собственную реализацию History API
+		 * @param {Object} history - должен предоставлять реализацию методов back(), forward(), pushState()
+		 */
+		setHistory(history) {
+			this.history = history;
+		}
+
+		/**
 		 * Возврат на один шаг назад в истории браузера
 		 */
 		static back() {
