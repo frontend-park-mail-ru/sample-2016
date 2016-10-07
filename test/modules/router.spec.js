@@ -25,7 +25,7 @@
 			expect(Route.prototype.navigate).not.toHaveBeenCalled();
 
 			// имитирует переход по клику по ссылке
-			this.router.history.pushState({}, '', 'path1');
+			this.router.history.pushState({}, '', '/path1');
 			expect(Route.prototype.navigate).not.toHaveBeenCalled();
 
 			this.router.go('/path2');
@@ -74,10 +74,25 @@
 	});
 
 	describe('Router.fn.go', function () {
-		it('меняет pathname страницы', function () {
+		beforeEach(function () {
 			this.router.start();
+			spyOn(this.router, 'onroute');
+		});
+
+		it('меняет pathname страницы', function () {
+			this.router.go('/path1');
+			expect(window.location.pathname).toBe('/path1');
+		});
+
+		it('вызывает метод onroute c новым путём', function () {
+			this.router.go('/path2');
+			expect(this.router.onroute).toHaveBeenCalledWith('/path2', {});
+		});
+
+		it('вызывает метод onroute только если новый путь отличался от старого', function () {
+			this.router.history.pushState({}, '', '/hello');
 			this.router.go('/hello');
-			expect(window.location.pathname).toBe('/hello');
+			expect(this.router.onroute).not.toHaveBeenCalled();
 		});
 	});
 
