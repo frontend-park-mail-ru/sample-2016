@@ -7,12 +7,17 @@ let path = require('path');
 let technolibs = require('technolibs');
 
 app.use('/', express.static('public', { maxAge: 1 }));
+app.use('/chat', express.static('public', {maxAge: 1}));
 technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
 app.use('/libs', express.static('node_modules'));
 
 app.get('/api/session', (req, res) => {
+	res.send(technoDoc.mock(require('./api/scheme/Session')))
+});
+
+app.post('/api/session', (req, res) => {
 	res.send(technoDoc.mock(require('./api/scheme/Session')))
 });
 
