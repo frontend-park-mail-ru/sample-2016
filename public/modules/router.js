@@ -94,14 +94,14 @@
 		/**
 		 * Возврат на один шаг назад в истории браузера
 		 */
-		static back() {
+		back() {
 			this.history.back();
 		}
 
 		/**
 		 * Переход на один шаг вперёд в истории браузера
 		 */
-		static forward() {
+		forward() {
 			this.history.forward();
 		}
 	}
