@@ -38,8 +38,8 @@
 		 * @param {Object} [state={}] - Объект state, который был передан в событие popstate для объекта window
 		 */
 		navigate(pathname, state = {}) {
+			state = state || {};
 			let keys = this.regex(pathname);
-
 			if (!this._view) {
 				let view = new this.View(this.options);
 				view.init(this.options);
