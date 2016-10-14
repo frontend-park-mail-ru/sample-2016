@@ -3,7 +3,12 @@
 	
 	class Model {
 		
-		constructor(attributes) {
+		constructor(attributes = {}) {
+			Object.keys(attributes).forEach(key => {
+				if (attributes[key] === undefined) {
+					delete attributes[key];
+				}
+			})
 			this.attributes = Object.assign({}, this.defaults, attributes);
 		}
 		
@@ -18,18 +23,19 @@
 		send(method, data = {}) {
 			return new Promise((resolve, reject) => {
 				let xhr = new XMLHttpRequest();
-				xhr.open(method, url, true);
+				xhr.open(method, this.url, true);
+				xhr.setRequestHeader('Content-Type', 'application/json');
 
-				xhr.onReadyStateChange = function () {
+				xhr.onreadystatechange = function () {
 					if (xhr.readyState === 4) {
 						resolve(xhr.responseText);
 					}
 				}
 				
-				xhr.onerroe = function () {
+				xhr.onerror = function () {
 					reject();
 				}
-				
+
 				xhr.send(JSON.stringify(data));
 			});
 		}

@@ -12,11 +12,17 @@
 		}
 
 		resume(options = {}) {
-			if (!options.username && !options.email) {
-				return this.router.go('/');
-			}
 
-			// TODO: дописать реализацию
+			this._component = new Chat({
+				el: this._el,
+				data: {
+					messages: [],
+					username: options.username,
+					email: options.email
+				}
+			});
+			this._component.render();
+			this._component.subscribe();
 
 			this.show();
 		}
