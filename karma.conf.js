@@ -10,7 +10,7 @@ module.exports = function (config) {
 			'./public/components/**/*.js',
 			'./public/modules/**/*.js',
 			'./public/views/**/*.js',
-			'./test/**/pathToRegex.spec.js'
+			'./test/**/*.spec.js'
 		],
 
 		reporters: ['progress', 'coverage'],
