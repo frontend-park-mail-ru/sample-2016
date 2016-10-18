@@ -1,6 +1,6 @@
 module.exports = function (config) {
 	'use strict';
-	config.set({
+	let configuration = {
 
 		basePath: '',
 
@@ -10,7 +10,7 @@ module.exports = function (config) {
 			'./public/components/**/*.js',
 			'./public/modules/**/*.js',
 			'./public/views/**/*.js',
-			'./test/**/*.spec.js'
+			'./test/**/pathToRegex.spec.js'
 		],
 
 		reporters: ['progress', 'coverage'],
@@ -30,9 +30,19 @@ module.exports = function (config) {
 		logLevel: config.LOG_INFO,
 
 		browsers: ['Chrome'],
+		customLaunchers: {
+			Chrome_travis_ci: {
+				base: 'Chrome',
+				flags: ['--no-sandbox']
+			}
+		},
 		coverageReporter: {
 			type: 'html',
 			dir: 'public/coverage/'
 		}
-	});
+	}
+	if (process.env.TRAVIS) {
+		configuration.browsers = ['Chrome_travis_ci']
+	}
+	config.set(configuration)
 };
