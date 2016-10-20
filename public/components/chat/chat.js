@@ -4,6 +4,7 @@
 	// import
 	const Block = window.Block;
 	const Form = window.Form;
+	const Message = window.Message;
 
 
 	class Chat extends Block {
@@ -86,8 +87,25 @@
 				email: this.data.email
 			};
 
-			let result = technolibs.request('/api/messages', data);
-			this.form.reset();
+			const message = new Message(data);
+			message.save().then(() => {
+				this.form.reset();
+				
+				message.fetch().then((data) => {
+					console.log('Our model', data);
+					
+					message.remove().then(data => {
+						console.log('DELETED');
+						
+						message.fetch().then((data) => {
+							console.log('Our model 2', data);
+						});
+					})
+				});
+				
+				
+			});
+			
 		}
 
 		/**
