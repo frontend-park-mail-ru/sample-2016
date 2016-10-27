@@ -9,7 +9,6 @@ module.exports = {
         "browser": true
     },
     "rules": {
-        "no-unused-vars": [1, { "vars": "all", "args": "none" }],
         "no-extra-semi": 1,
         "no-undef": 1,
         "no-console": 1,

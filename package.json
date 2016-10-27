@@ -21,11 +21,21 @@
   "keywords": [],
   "author": "",
   "dependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.7",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
     "body-parser": "^1.15.2",
+    "clean-webpack-plugin": "^0.1.13",
+    "css-loader": "^0.25.0",
     "express": "^4.14.0",
-    "technolibs": "1.1.*",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "html-webpack-plugin": "^2.24.0",
     "json-schema-mock": "0.0.8",
-    "techno-gendoc": "0.4.1"
+    "style-loader": "^0.13.1",
+    "techno-gendoc": "0.4.1",
+    "technolibs": "1.1.*",
+    "webpack": "^2.1.0-beta.25"
   },
   "devDependencies": {
     "eslint": "^3.6.1",
