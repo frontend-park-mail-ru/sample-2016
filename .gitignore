@@ -2,3 +2,5 @@ node_modules/
 public/coverage/
 public/api/
 *.log
+dist/
+*.tmpl.js

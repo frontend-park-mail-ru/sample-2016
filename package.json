@@ -9,7 +9,8 @@
     "fest": "./node_modules/.bin/fest-build --dir=public/components/",
     "karma:start": "karma start",
     "karma:run": "karma run",
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack": "webpack --display-error-details"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "body-parser": "^1.15.2",
     "clean-webpack-plugin": "^0.1.13",
     "css-loader": "^0.25.0",
+    "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.24.0",

@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-	devtool: 'cheap-module-source-map',
+	devtool: 'inline-source-map',
 	entry: [
 		'babel-polyfill',
 		'eventsource-polyfill',
@@ -24,7 +24,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
-				loader: 'babel',
+				loader: 'babel-loader',
 				query: {
 					presets: ['latest']
 				}
@@ -32,6 +32,10 @@ module.exports = {
 			{
 				test: /\.css/,
 				loader: 'style-loader!css-loader'
+			},
+			{
+				test: /\.tmpl\.xml/,
+				loader: 'fest-loader'
 			}
 		]
 	},
@@ -47,9 +51,8 @@ module.exports = {
 		new webpack.NoErrorsPlugin(),
 		new ExtractTextPlugin('assets/css/[name].bundle.[hash].css'),
 		new HtmlPlugin({
-			title: 'Release.mail.ru',
 			filename: 'index.html',
-			template: path.resolve(__dirname, 'app/index.html')
+			template: path.resolve(__dirname, 'public/index.html')
 		}),
 		// new webpack.optimize.UglifyJsPlugin()
 	]

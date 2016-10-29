@@ -1,26 +1,19 @@
-(function () {
-	'use strict';
+'use strict';
 
-	const View = window.View;
-	const Form = window.Form;
+import View from '../modules/view';
+import Form from '../components/form/form';
 
-	class MainView extends View {
-		constructor(options = {}) {
-			super(options);
-			this._el = document.querySelector('.js-login');
-			this.hide();
+export default class MainView extends View {
+	constructor(options = {}) {
+		super(options);
+		this._el = document.querySelector('.js-login');
+		this.hide();
 
-			// TODO: дописать реализацию
+		// TODO: дописать реализацию
 
-		}
-
-		init(options = {}) {
-			// TODO: дописать реализацию
-		}
 	}
 
-
-	// export
-	window.MainView = MainView;
-
-})();
+	init(options = {}) {
+		// TODO: дописать реализацию
+	}
+}

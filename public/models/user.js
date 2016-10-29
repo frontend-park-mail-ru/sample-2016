@@ -1,28 +1,22 @@
-(function () {
-	'use strict';
-	
-	//import
-	let Model = window.Model;
-	
-	class User extends Model {
-		
-		constructor(attributes) {
-			super(attributes);
-		}
-		
-		get defaults() {
-			return {
-				name: '',
-				email: ''
-			}
-		}
-		
-		get url() {
-			return '/user/';
-		}
-		
+'use strict';
+
+import Model from '../modules/model';
+
+export default class User extends Model {
+
+	constructor(attributes) {
+		super(attributes);
 	}
-	
-	//export
-	window.User = User;
-})();
+
+	get defaults() {
+		return {
+			name: '',
+			email: ''
+		}
+	}
+
+	get url() {
+		return '/user/';
+	}
+
+}
