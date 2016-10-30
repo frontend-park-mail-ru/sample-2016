@@ -2,16 +2,14 @@ let express = require('express');
 let parser = require('body-parser');
 let app = express();
 let technoDoc = require('techno-gendoc');
-let path = require('path');
 
-let technolibs = require('technolibs');
+let publish = require('technolibs/publish');
 
-app.use('/', express.static('public', { maxAge: 1 }));
-app.use('/chat', express.static('public', {maxAge: 1}));
+app.use('/', express.static('dist', {maxAge: 1}));
+app.use('/chat', express.static('dist', {maxAge: 1}));
 technoDoc.generate(require('./api'), 'public');
 
 app.use(parser.json());
-app.use('/libs', express.static('node_modules'));
 
 app.get('/api/session', (req, res) => {
 	res.send(technoDoc.mock(require('./api/scheme/Session')))
@@ -23,7 +21,7 @@ app.post('/api/session', (req, res) => {
 
 
 app.post('/api/messages', (req, res) => {
-	technolibs.publish(req.body).then(body => res.json(req.body));
+	publish(req.body).then(body => res.json(req.body));
 });
 
 app.get('/api/messages', function (req, res) {

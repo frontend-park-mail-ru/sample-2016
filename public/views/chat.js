@@ -1,35 +1,28 @@
-(function () {
-	'use strict';
+'use strict';
 
-	const View = window.View;
-	const Chat = window.Chat;
+import View from '../modules/view';
+import Chat from '../components/chat/chat';
 
-	class ChatView extends View {
-		constructor(options = {}) {
-			super(options);
-			this._el = document.querySelector('.js-chat');
-			this.hide();
-		}
-
-		resume(options = {}) {
-
-			this._component = new Chat({
-				el: this._el,
-				data: {
-					messages: [],
-					username: options.username,
-					email: options.email
-				}
-			});
-			this._component.render();
-			this._component.subscribe();
-
-			this.show();
-		}
+export default class ChatView extends View {
+	constructor(options = {}) {
+		super(options);
+		this._el = document.querySelector('.js-chat');
+		this.hide();
 	}
 
+	resume(options = {}) {
 
-	// export
-	window.ChatView = ChatView;
+		this._component = new Chat({
+			el: this._el,
+			data: {
+				messages: [],
+				username: options.username,
+				email: options.email
+			}
+		});
+		this._component.render();
+		this._component.subscribe();
 
-})();
+		this.show();
+	}
+}

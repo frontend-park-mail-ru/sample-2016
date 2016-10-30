@@ -1,16 +1,17 @@
-(function () {
-	'use strict';
+'use strict';
 
-	const Router = window.Router;
-	const ChatView = window.ChatView;
-	const MainView = window.MainView;
+import './css/milligram.min.css';
+import './css/main.css';
 
 
-	// TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
-	// З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
-	(new Router)
-		.addRoute('/chat', ChatView)
-		.addRoute('/', MainView)
-		.start();
+import Router from './modules/router';
+import ChatView from './views/chat';
+import MainView from './views/main';
 
-})();
+
+// TIP: роуты нужно указывать от наиболее специфичного к наименее специфичному
+// З.Ы. чтобы более ранние роуты не были префиксами более поздних ;]
+(new Router)
+	.addRoute('/chat', ChatView)
+	.addRoute('/', MainView)
+	.start();
