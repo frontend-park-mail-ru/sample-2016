@@ -31,7 +31,10 @@ module.exports = {
 			},
 			{
 				test: /\.css/,
-				loader: 'style-loader!css-loader'
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: "style-loader",
+					loader: "css-loader"
+				})
 			},
 			{
 				test: /\.tmpl\.xml/,
@@ -44,7 +47,9 @@ module.exports = {
 	},
 	resolveLoader: {
 		moduleExtensions: ['-loader'],
-		alias: {}
+		alias: {
+			'fest-loader': path.resolve(__dirname, './fest-loader')
+		}
 	},
 	plugins: [
 		new CleanWebpackPlugin('dist'),

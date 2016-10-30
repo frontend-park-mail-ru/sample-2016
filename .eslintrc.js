@@ -1,8 +1,5 @@
 module.exports = {
     "extends": "eslint:recommended",
-    "plugins": [
-        "import"
-    ],
     "env": {
         "es6": true,
         "node": true,

@@ -1,6 +1,7 @@
 'use strict';
 
 // import
+import './chat.css';
 import Block from '../block/block';
 import Form from '../form/form';
 import Message from '../../models/message';

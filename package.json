@@ -1,12 +1,12 @@
 {
   "name": "sample",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "karma start --single-run",
-    "lint": "./node_modules/.bin/eslint public/components/**/*.js",
-    "fest": "./node_modules/.bin/fest-build --dir=public/components/",
+    "lint": "eslint './**/*.js'",
+    "fest": "fest-build --dir=public/components/",
     "karma:start": "karma start",
     "karma:run": "karma run",
     "start": "node server.js",
@@ -17,39 +17,35 @@
     "url": "git+https://github.com/frontend-park-mail-ru/sample.git"
   },
   "engines": {
-    "node": "6.3.1"
+    "node": ">=6.0.0"
   },
   "keywords": [],
   "author": "",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "json-schema-mock": "0.0.8",
+    "techno-gendoc": "0.4.1",
+    "technolibs": "1.1.*"
+  },
+  "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
-    "body-parser": "^1.15.2",
     "clean-webpack-plugin": "^0.1.13",
     "css-loader": "^0.25.0",
+    "eslint": "^3.9.0",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^2.0.0-beta.4",
-    "html-webpack-plugin": "^2.24.0",
-    "json-schema-mock": "0.0.8",
-    "style-loader": "^0.13.1",
-    "techno-gendoc": "0.4.1",
-    "technolibs": "1.1.*",
-    "webpack": "^2.1.0-beta.25"
-  },
-  "devDependencies": {
-    "eslint": "^3.6.1",
-    "eslint-config-airbnb": "11.1.0",
-    "eslint-plugin-import": "1.15.0",
-    "eslint-plugin-jsx-a11y": "2.2.2",
-    "eslint-plugin-react": "6.2.2",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
     "fest": "^0.12.1",
+    "html-webpack-plugin": "^2.24.0",
     "jasmine": "^2.5.2",
     "karma": "1.3.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.0.2"
+    "karma-jasmine": "^1.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "2.1.0-beta.25"
   }
 }
