@@ -1,0 +1,37 @@
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
+
+	<!-- Объявляем блок чата -->
+	<fest:set name="chat">
+		<h3 class="js-title">Ты в чате,<fest:space/><fest:value>params.username</fest:value>!</h3>
+		<div class="js-messages chat">
+			<div class="cssload-wrap">
+				<div class="cssload-cssload-spinner"></div>
+			</div>
+		</div>
+		<div class="js-chat-form"></div>
+	</fest:set>
+
+	<!-- Объявляем элемент сообщений -->
+	<fest:set name="chat__messages">
+		<fest:for iterate="params" index="i" value="message">
+			<div class="chat__message {message.isMy ? ' chat__message_my' : ''}" style="background: #{message.background}">
+				<fest:value>message.message</fest:value>
+				<div class="chat__email">
+					<fest:value>message.email</fest:value>
+				</div>
+			</div>
+		</fest:for>
+	</fest:set>
+
+	<!-- Вызываем нужный блок/элемент блока -->
+	<fest:choose>
+		<fest:when test="data.block">
+			<fest:get name="{data.block}">data.data</fest:get>
+		</fest:when>
+
+		<fest:otherwise>
+			<fest:get name="chat">data</fest:get>
+		</fest:otherwise>
+	</fest:choose>
+
+</fest:template>

@@ -1,1 +1,2 @@
-console.warn('TODO: swich to framework for testing!');
+//TODO: Перенести все тесты в папку test
+// assert.equal(filter('КЕК'), '***');
