@@ -21,12 +21,13 @@
 
 		resume(options = {}) {
 			this._game = new Game({
-				ctx: this.ctx
+				ctx: this.ctx,
+				width: 1024,
+				height: 768
 			});
 			this._game.start();
 
 			this.show();
-			debugger;
 		}
 	}
 
