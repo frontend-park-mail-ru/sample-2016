@@ -1,6 +1,9 @@
 (function () {
 	'use strict';
 
+	/**
+	 * Модуль для опреления нажатых клавиш
+	 */
 	class KeyMaster {
 
 		/**
