@@ -3,6 +3,7 @@
 
 	const Ball = window.Ball;
 	const Pane = window.Pane;
+	const KeyMaster = window.KeyMaster;
 
 	class PingPong {
 
@@ -14,12 +15,8 @@
 			this.width = width;
 			this.height = height;
 
-			this.keys = {};
-
 			this.ball = new Ball({});
-			this.ball.dv({vx: 0.1, vy: 0.1});
-
-			this.pane = new Pane();
+			this.key = new KeyMaster();
 		}
 
 		/**
@@ -27,17 +24,8 @@
 		 */
 		start () {
 			this._stopped = false;
-			this.initEvents();
+			this.key.init();
 			this.startLoop();
-		}
-
-		initEvents () {
-			document.addEventListener('keydown', this._keyHandler.bind(this, 'press'));
-			document.addEventListener('keyup', this._keyHandler.bind(this, 'up'));
-		}
-
-		_keyHandler (type, event) {
-			this.keys[event.key] = type === 'press';
 		}
 
 		isStopped () {
@@ -81,29 +69,31 @@
 			this.clear();
 
 			this.ball.update(dt);
+			this.checkControl();
 			this.ball.checkRectangleIntersection({
 				width: this.width,
 				height: this.height
 			});
 
-			if (keys['w']) {
+		    this.ball.draw(this.ctx);
+		}
+
+		checkControl () {
+			if (this.key.is('w')) {
 				this.ball.dv({vy: -0.01});
 			}
 
-			if (keys['s']) {
+			if (this.key.is('s')) {
 				this.ball.dv({vy: 0.01});
 			}
 
-			if (keys['d']) {
+			if (this.key.is('d')) {
 				this.ball.dv({vx: 0.01});
 			}
 
-			if (keys['a']) {
+			if (this.key.is('a')) {
 				this.ball.dv({vx: -0.01});
 			}
-
-
-		    this.ball.draw(this.ctx);
 		}
 
 	}
