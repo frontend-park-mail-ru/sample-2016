@@ -16,6 +16,9 @@
 			this.height = height;
 
 			this.ball = new Ball({});
+			this.readyToShot = true;
+			this.bullets = [];
+
 			this.key = new KeyMaster();
 		}
 
@@ -68,14 +71,51 @@
 			let keys = this.keys;
 			this.clear();
 
+			this.bullets.forEach(bullet => {
+				bullet.update(dt);
+				bullet.checkRectangleIntersection({
+					width: this.width,
+					height: this.height
+				}, 'destroy');
+
+				bullet.draw(this.ctx);
+			});
+
 			this.ball.update(dt);
 			this.checkControl();
 			this.ball.checkRectangleIntersection({
 				width: this.width,
 				height: this.height
-			});
+			}, 'reflect');
 
 		    this.ball.draw(this.ctx);
+			this.collectGarbage();
+		}
+
+		collectGarbage () {
+			this.bullets.forEach((bullet, index, arr) => {
+				if(bullet.toDestroy) {
+					arr.splice(index, 1);
+				}
+			});
+		}
+
+		createBullet () {
+			if (!this.readyToShot) {
+				return;
+			}
+
+			this.readyToShot = false;
+			this.bullets.push(new Ball({
+				color: '#' + technolibs.colorHash('bullet' + Date.now()),
+				r: 10,
+				x: this.ball.x,
+				y: this.ball.y,
+				vx: this.ball.vx * 5,
+				vy: this.ball.vy * 5
+			}));
+
+			setTimeout(() => this.readyToShot = true, 300);
 		}
 
 		checkControl () {
@@ -93,6 +133,10 @@
 
 			if (this.key.is('a')) {
 				this.ball.dv({vx: -0.01});
+			}
+
+			if (this.key.is(' ')) {
+				this.createBullet();
 			}
 		}
 

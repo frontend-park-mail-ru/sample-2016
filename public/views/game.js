@@ -12,7 +12,16 @@
 			this.hide();
 		}
 
-		init(options = {}) {
+		init(options = {}) {}
+
+		_initCanvas () {
+			this.canvas = this._el.querySelector('.js-canvas');
+			this.canvas.width = this._el.clientWidth + '';
+			this.canvas.height = this._el.clientHeight + '';
+		}
+
+		resume () {
+			super.resume();
 			this._initCanvas();
 
 			this._game = new PingPong({
@@ -20,16 +29,7 @@
 				width: +this.canvas.width,
 				height: +this.canvas.height
 			});
-		}
 
-		_initCanvas () {
-			this.canvas = this._el.querySelector('.js-canvas');
-			this.canvas.width = '640';
-			this.canvas.height = '480';
-		}
-
-		resume () {
-			super.resume();
 			this._game.start();
 		}
 	}
