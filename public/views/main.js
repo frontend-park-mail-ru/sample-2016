@@ -50,7 +50,7 @@
 					email: formData.email
 				};
 
-				this.router.go('/chat', state);
+				this.router.go('/game', state);
 			});
 		}
 	}
