@@ -4,6 +4,7 @@
 	// import
 	const Block = window.Block;
 	const Form = window.Form;
+	const Message = window.Message;
 
 
 	class Chat extends Block {
@@ -85,9 +86,16 @@
 				message: this.form.getFormData().message,
 				email: this.data.email
 			};
+			
+			let message = new Message(data);
+			
+			message.save()
+				.then(data => {
+					this.form.reset();
+				});
 
-			let result = technolibs.request('/api/messages', data);
-			this.form.reset();
+			// let result = technolibs.request('/api/messages', data);
+			
 		}
 
 		/**

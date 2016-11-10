@@ -12,9 +12,10 @@
 		}
 
 		resume(options = {}) {
-			if (!options.username && !options.email) {
-				return this.router.go('/');
-			}
+			// if (!options.username && !options.email) {
+			// 	return this.router.go('/');
+			// }
+
 			this._component = new Chat({
 				el: this._el,
 				data: {
