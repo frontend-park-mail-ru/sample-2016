@@ -6,7 +6,9 @@
 		/**
 		 * Конструктор класса Pane
 		 */
-		constructor () {}
+		constructor() {
+
+		}
 
 
 	}

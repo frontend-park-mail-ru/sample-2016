@@ -10,7 +10,7 @@
 		/**
 		 * Конструктор класса Form
 		 */
-		constructor ({ctx, width, height}) {
+		constructor({ctx, width, height}) {
 			this.ctx = ctx;
 			this.width = width;
 			this.height = height;
@@ -25,29 +25,29 @@
 		/**
 		 * Начало новой игры
 		 */
-		start () {
+		start() {
 			this._stopped = false;
 			this.key.init();
 			this.startLoop();
 		}
 
-		isStopped () {
+		isStopped() {
 			return this._stopped;
 		}
 
 		/**
 		 * Начинаем крутить петлю
 		 */
-		startLoop () {
+		startLoop() {
 			let time,
-				isStopped =  this.isStopped.bind(this),
+				isStopped = this.isStopped.bind(this),
 				exec = this.exec.bind(this);
 
-			function step () {
-			    var now = Date.now(),
-			        dt = now - (time || now);
+			function step() {
+				var now = Date.now(),
+					dt = now - (time || now);
 
-			    time = now;
+				time = now;
 
 				if (!isStopped()) {
 					requestAnimationFrame(step);
@@ -59,7 +59,7 @@
 			step();
 		}
 
-		clear () {
+		clear() {
 			this.ctx.clearRect(0, 0, this.width, this.height);
 		}
 
@@ -67,7 +67,7 @@
 		 * Обрабатываем текущий момент
 		 * @param  {number} dt
 		 */
-		exec (dt) {
+		exec(dt) {
 			let keys = this.keys;
 			this.clear();
 
@@ -88,19 +88,19 @@
 				height: this.height
 			}, 'reflect');
 
-		    this.ball.draw(this.ctx);
+			this.ball.draw(this.ctx);
 			this.collectGarbage();
 		}
 
-		collectGarbage () {
+		collectGarbage() {
 			this.bullets.forEach((bullet, index, arr) => {
-				if(bullet.toDestroy) {
+				if (bullet.toDestroy) {
 					arr.splice(index, 1);
 				}
 			});
 		}
 
-		createBullet () {
+		createBullet() {
 			if (!this.readyToShot) {
 				return;
 			}
@@ -118,7 +118,7 @@
 			setTimeout(() => this.readyToShot = true, 300);
 		}
 
-		checkControl () {
+		checkControl() {
 			if (this.key.is('w')) {
 				this.ball.dv({vy: -0.01});
 			}

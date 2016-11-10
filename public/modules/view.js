@@ -48,7 +48,7 @@
 		 * @param {Object} [options={}] - Объект с параметрами
 		 */
 		show(options = {}) {
-			this._el.hidden = false;
+			this._el && (this._el.hidden = false);
 		}
 
 		/**

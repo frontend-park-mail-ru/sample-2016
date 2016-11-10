@@ -9,7 +9,7 @@
 		/**
 		 * Конструктор класса KeyMaster
 		 */
-		constructor () {
+		constructor() {
 			this.keys = {};
 
 			this._onPress = this._keyHandler.bind(this, 'press');
@@ -19,7 +19,7 @@
 		/**
 		 * Начинаем слушать события клавиатуры
 		 */
-		init () {
+		init() {
 			document.addEventListener('keydown', this._onPress);
 			document.addEventListener('keyup', this._onUp);
 		}
@@ -27,7 +27,7 @@
 		/**
 		 * Прекращаем слушать события клавиатуры
 		 */
-		destroy () {
+		destroy() {
 			document.removeEventListener('keydown', this._onPress);
 			document.removeEventListener('keyup', this._onUp);
 		}
@@ -37,7 +37,7 @@
 		 * @param  {string}  key
 		 * @return {boolean}
 		 */
-		is (key) {
+		is(key) {
 			return this.keys[key];
 		}
 
@@ -46,7 +46,7 @@
 		 * @param  {string} type
 		 * @param  {Event} event
 		 */
-		_keyHandler (type, event) {
+		_keyHandler(type, event) {
 			this.keys[event.key] = type === 'press';
 		}
 
