@@ -8,10 +8,10 @@
 
 .chat__message {
 	font-size: 20px;
-    padding: 1vw;
-    border-radius: 15px;
-    background-color: #bdbdbd;
-    margin: 0.5vw 0;
+	padding: 1vw;
+	border-radius: 15px;
+	background-color: #bdbdbd;
+	margin: 0.5vw 0;
 	margin-right: 5vw;
 	word-wrap: break-word;
 }
@@ -30,8 +30,8 @@
 
 .chat__email {
 	text-align: right;
-    font-size: 10px;
-    color: #000;
+	font-size: 10px;
+	color: #000;
 }
 
 .chat__message_my .chat__email {

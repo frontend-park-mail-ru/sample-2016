@@ -6,6 +6,10 @@
 			this._el = document.createElement(name);
 			this.setAttrs(options.attrs);
 			this._options = options;
+			console.log(options);
+			if (options.id) {
+				this._el.id = options.id;
+			}
 		}
 
 		setAttrs(attrs = {}) {

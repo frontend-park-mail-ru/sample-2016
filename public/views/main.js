@@ -27,9 +27,15 @@
 					],
 					controls: [
 						{
-							text: 'Войти',
+							text: 'Войти в чат',
 							attrs: {
 								type: 'submit'
+							}
+						}, {
+							text: 'Играть',
+							attrs: {
+								id: 'js-play',
+								type: 'button'
 							}
 						}
 					]
@@ -50,7 +56,13 @@
 					email: formData.email
 				};
 
-				this.router.go('/game', state);
+				this.router.go('/chat', state);
+			});
+
+			let playButton = document.getElementById('js-play');
+			playButton.addEventListener('click', event => {
+				event.preventDefault();
+				this.router.go('/game');
 			});
 		}
 	}
