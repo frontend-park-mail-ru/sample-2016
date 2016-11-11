@@ -1,28 +1,29 @@
 (function () {
 	'use strict';
-	
-	//import
-	let Model = window.Model;
-	
-	class Message extends Model {
-		
-		constructor(attributes) {
-			super(attributes);
+
+	// import
+	// let Model = window.Model;
+
+	class Message {
+		constructor() {
+			const protocol = window.location.protocol === 'https:' ?
+				'wss:' : 'ws:';
+			const address = `${protocol}/${window.__HOST}/ws/messages`;
+			const echoAddress = `${protocol}/${window.__HOST}/ws/messages`;
+			console.log(address);
+			console.log(echoAddress);
 		}
-		
-		get defaults() {
-			return {
-				name: 'Anon',
-				email: 'anon@mail.ru'
-			}
+
+		sendMessage(message) {
+
 		}
-		
-		get url() {
-			return '/api/messages/';
+
+		addNewMessageListener(callback) {
+
 		}
-		
+
 	}
-	
+
 	//export
 	window.Message = Message;
 })();

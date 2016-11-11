@@ -54,10 +54,10 @@
 				user
 					.signup()
 					.then(() => {
-						console.log('cookie is');
-						console.dir(document.cookie);
 						this.router.go('/chat', user.json);
+						return user.fetchAll();
 					})
+					.then(console.log)
 					.catch(console.error);
 			});
 

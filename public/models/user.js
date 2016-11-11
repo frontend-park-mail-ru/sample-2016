@@ -22,37 +22,45 @@
 		 */
 		signup() {
 			return new Promise(function (resolve, reject) {
-				console.log('wwwwwww');
-				window.fetch(`${window.__HOST}/api/users`, {
-					method: 'POST',
-					mode: 'cors',
-					body: JSON.stringify({
-						username: this.username,
-						email: this.email
-					}),
-					headers: {
-						'Content-Type': 'application/json'
-					}
-				}).then((res)=> {
-					console.log('statusCode', res.statusCode);
-					console.log('status', res.status);
-					resolve();
+				const xhr = new XMLHttpRequest();
+
+				const json = JSON.stringify({
+					username: this.username,
+					email: this.email
 				});
+
+				xhr.open('POST', `${window.__HOST}/api/users`, true);
+				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+				xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+				xhr.onreadystatechange = function () {
+					if (this.readyState !== 4) return;
+					resolve();
+				};
+
+				xhr.send(json);
 			}.bind(this));
 		}
 
 
 		fetchAll() {
 			return new Promise(function (resolve, reject) {
-				window.fetch(`${host}/api/users`, {
-					method: 'GET',
-					mode: 'cors'
-				}).then((res)=> {
-					console.log('statusCode', res.statusCode);
-					console.log('status', res.status);
-					resolve();
-				});
-			});
+				const xhr = new XMLHttpRequest();
+
+				xhr.open('GET', `${window.__HOST}/api/users`, true);
+				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+				xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+				xhr.onreadystatechange = function () {
+					if (this.readyState !== 4) return;
+					if (this.status !== 200) {
+						return reject(this.statusText);
+					}
+					resolve(JSON.parse(this.responseText));
+				};
+
+				xhr.send();
+			}.bind(this));
 		}
 
 		/**

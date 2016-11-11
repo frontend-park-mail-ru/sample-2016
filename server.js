@@ -31,13 +31,13 @@ app.use(parser.json());
 app.use(cookieParser());
 
 
-app.use(function (req, res, next) {
-	console.log(`${req.method}  ${req.originalUrl}`);
-	if (req.method === 'POST') {
-		console.dir(req.body);
-	}
-	next();
-});
+// app.use(function (req, res, next) {
+// 	console.log(`${req.method}  ${req.originalUrl}`);
+// 	if (req.method === 'POST') {
+// 		console.dir(req.body);
+// 	}
+// 	next();
+// });
 
 // получение списка всех пользователей
 app.get('/api/users', function (req, res) {
@@ -60,11 +60,8 @@ app.post('/api/users', function (req, res) {
 	if (body.username && body.email) {
 		const user = makeUser(body.username, body.email);
 		users.set(user.secret, user);
-		res.set('Set-Cookie', 'name=value');
-		// res.cookie('username', 'kopte3', {domain: 'my.localhost.com'});
-		// res.cookie('username', user.secret);
-		// res.cookie('secret', user.secret);
-		// res.cookie('secret', user.secret);
+		res.cookie('secret', user.secret, {domain: 'my.localhost.com', path: '/', maxAge: 2 * 60 * 1000});
+		res.cookie('secret', user.secret, {domain: 'cors.localhost.com', path: '/', maxAge: 2 * 60 * 1000});
 		return res.status(201).end();
 	}
 	return res.status(400).json({error: 'Неверные имя пользователя и/или пароль'});
@@ -72,12 +69,25 @@ app.post('/api/users', function (req, res) {
 
 
 const clients = new Set();
-app.ws('/messages', function (ws, req) {
-	console.dir(arguments);
+app.ws('/ws/messages', function (ws, req) {
+	console.log(ws.upgradeReq.cookies);
+	const secret = ws.upgradeReq.cookies.secret;
+	if (!secret) {
+		console.log('Закрываем соединение, потому что в запросе не было нужной куки');
+		ws.close();
+	}
+
+	if (!users.has(secret)) {
+		console.log('Закрываем соединение, потому что такого пользователя не существует');
+		ws.close();
+	}
+
+	const user = users.get(secret);
+
 	console.log('Add new client');
 	clients.add(ws);
 	console.log(`NOW ${clients.size} clients exists`);
-	console.log(req);
+
 
 	ws.on('message', function (msg) {
 		console.dir(arguments);
@@ -89,7 +99,16 @@ app.ws('/messages', function (ws, req) {
 		clients.delete(ws);
 		console.log(`NOW ${clients.size} clients exists`);
 		console.dir(arguments);
+	});
+});
 
+
+app.ws('/ws/echo', function (ws, req) {
+	console.log('Установили соединение');
+	console.log(ws.upgradeReq.cookies);
+	ws.on('message', function (msg) {
+		console.log('Приняли новое сообщение', msg);
+		ws.send(msg);
 	});
 });
 

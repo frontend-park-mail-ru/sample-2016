@@ -18,6 +18,8 @@
 			this.data = data;
 			this._el = el;
 
+			this.messagesModel = new Message();
+
 			this.init();
 			this.render();
 		}
@@ -73,7 +75,7 @@
 		 * Подписываем чат на сетевые и пользовательские события
 		 */
 		subscribe() {
-			technolibs.onMessage(this._updateMessages.bind(this));
+			this.messagesModel.addNewMessageListener(this._updateMessages.bind(this));
 		}
 
 		/**
@@ -86,16 +88,16 @@
 				message: this.form.getFormData().message,
 				email: this.data.email
 			};
-			
+
 			let message = new Message(data);
-			
+
 			message.save()
 				.then(data => {
 					this.form.reset();
 				});
 
 			// let result = technolibs.request('/api/messages', data);
-			
+
 		}
 
 		/**

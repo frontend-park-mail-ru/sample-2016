@@ -1,7 +1,8 @@
 (function () {
 	'use strict';
 
-	window.__HOST = 'http://my.localhost.com';
+	// window.__HOST = 'http://my.localhost.com';
+	window.__HOST = '';
 
 	const Router = window.Router;
 	const ChatView = window.ChatView;
