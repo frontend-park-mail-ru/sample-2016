@@ -25,10 +25,10 @@
 <script>
 	'use strict';
 
-	const host = 'ws:/' + location.host;
+//	const host = 'ws:/' + location.host;
 
 	console.log('Создаём новый WebSocket');
-	const ws = new WebSocket(host + '/ws/echo');
+	const ws = new WebSocket('ws:/' + location.host + '/ws/echo');
 //	const ws = new WebSocket('ws://cors.anotherhost.com/ws/echo');
 
 	ws.onopen = function (event) {
