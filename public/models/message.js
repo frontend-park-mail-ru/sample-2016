@@ -22,9 +22,10 @@
 				}.bind(this);
 
 
-				setTimeout(() => {
+				setInterval(() => {
+					console.info('refresh ws');
 					this.ws.send('');
-				}, 30);
+				}, 10000);
 
 
 			}.bind(this);

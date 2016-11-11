@@ -38,6 +38,12 @@
 								id: 'js-play',
 								type: 'button'
 							}
+						}, {
+							text: 'Пользователи',
+							attrs: {
+								id: 'js-scores-btn',
+								type: 'button'
+							}
 						}
 					]
 				}
@@ -63,6 +69,12 @@
 			playButton.addEventListener('click', event => {
 				event.preventDefault();
 				this.router.go('/game');
+			});
+
+			let scoresButton = document.getElementById('js-scores-btn');
+			scoresButton.addEventListener('click', event => {
+				event.preventDefault();
+				this.router.go('/scores');
 			});
 		}
 	}

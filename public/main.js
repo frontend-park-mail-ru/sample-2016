@@ -8,6 +8,7 @@
 	const Router = window.Router;
 	const ChatView = window.ChatView;
 	const MainView = window.MainView;
+	const ScoresView = window.ScoresView;
 	const GameView = window.GameView;
 
 
@@ -16,6 +17,7 @@
 	(new Router)
 		.addRoute('/chat', ChatView)
 		.addRoute('/game', GameView)
+		.addRoute('/scores', ScoresView)
 		.addRoute('/', MainView)
 		.start();
 
