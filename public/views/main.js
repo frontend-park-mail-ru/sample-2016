@@ -55,9 +55,7 @@
 					.signup()
 					.then(() => {
 						this.router.go('/chat', user.json);
-						return user.fetchAll();
 					})
-					.then(console.log)
 					.catch(console.error);
 			});
 

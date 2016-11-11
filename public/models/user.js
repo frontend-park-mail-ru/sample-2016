@@ -35,7 +35,10 @@
 
 				xhr.onreadystatechange = function () {
 					if (this.readyState !== 4) return;
-					resolve();
+					if (this.status !== 201) {
+						return reject(this.statusText);
+					}
+					resolve(JSON.parse(json));
 				};
 
 				xhr.send(json);

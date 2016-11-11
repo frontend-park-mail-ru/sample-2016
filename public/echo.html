@@ -29,6 +29,7 @@
 
 	console.log('Создаём новый WebSocket');
 	const ws = new WebSocket(host + '/ws/echo');
+//	const ws = new WebSocket('ws://cors.anotherhost.com/ws/echo');
 
 	ws.onopen = function (event) {
 		console.log(event);

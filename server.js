@@ -41,10 +41,10 @@ app.use(cookieParser());
 
 // получение списка всех пользователей
 app.get('/api/users', function (req, res) {
-	console.dir(req.cookies);
+	// console.dir(req.cookies);
 	const secret = req.cookies.secret;
 	if (!secret || !users.has(secret)) {
-		console.log('ooops!');
+		// console.log('ooops!');
 		return res.status(401).end();
 	}
 	const r = [...users.values()].map(user => {
@@ -60,8 +60,9 @@ app.post('/api/users', function (req, res) {
 	if (body.username && body.email) {
 		const user = makeUser(body.username, body.email);
 		users.set(user.secret, user);
+		res.cookie('secret', user.secret, {domain: 'localhost', path: '/', maxAge: 2 * 60 * 1000});
 		res.cookie('secret', user.secret, {domain: 'my.localhost.com', path: '/', maxAge: 2 * 60 * 1000});
-		res.cookie('secret', user.secret, {domain: 'cors.localhost.com', path: '/', maxAge: 2 * 60 * 1000});
+		res.cookie('secret', user.secret, {domain: 'cors.anotherhost.com', path: '/', maxAge: 2 * 60 * 1000});
 		return res.status(201).end();
 	}
 	return res.status(400).json({error: 'Неверные имя пользователя и/или пароль'});
@@ -70,16 +71,18 @@ app.post('/api/users', function (req, res) {
 
 const clients = new Set();
 app.ws('/ws/messages', function (ws, req) {
-	console.log(ws.upgradeReq.cookies);
+	// console.log(ws.upgradeReq.cookies);
 	const secret = ws.upgradeReq.cookies.secret;
 	if (!secret) {
 		console.log('Закрываем соединение, потому что в запросе не было нужной куки');
 		ws.close();
+		return;
 	}
 
 	if (!users.has(secret)) {
 		console.log('Закрываем соединение, потому что такого пользователя не существует');
 		ws.close();
+		return;
 	}
 
 	const user = users.get(secret);
@@ -90,16 +93,32 @@ app.ws('/ws/messages', function (ws, req) {
 
 
 	ws.on('message', function (msg) {
-		console.dir(arguments);
-		ws.send(msg);
+		try {
+			if (!msg) {
+				return;
+			}
+			let message = JSON.parse(msg);
+			message.email = user.email;
+			message.message = message.text;
+			messages.push(message);
+			ws.send(JSON.stringify(messages));
+		} catch (err) {
+			console.error(err);
+		}
 	});
 
 	ws.on('close', function (evt) {
 		console.log('Remove client');
 		clients.delete(ws);
 		console.log(`NOW ${clients.size} clients exists`);
-		console.dir(arguments);
 	});
+
+	try {
+		ws.send(JSON.stringify(messages));
+	} catch (err) {
+		console.error(err);
+	}
+
 });
 
 

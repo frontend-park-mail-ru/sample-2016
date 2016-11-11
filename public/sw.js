@@ -51,6 +51,7 @@ this.addEventListener('install', function (event) {
 });
 
 this.addEventListener('fetch', function (event) {
+	// console.log(event);
 	event.respondWith(
 		// ищем запрашиваемый ресурс в хранилище кэша
 		caches.match(event.request).then(function (cachedResponse) {
