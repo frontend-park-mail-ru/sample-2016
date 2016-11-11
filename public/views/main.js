@@ -3,6 +3,7 @@
 
 	const View = window.View;
 	const Form = window.Form;
+	const User = window.User;
 
 	class MainView extends View {
 		constructor(options = {}) {
@@ -48,15 +49,16 @@
 				event.preventDefault();
 
 				let formData = this._component.getFormData();
-				technolibs.request('/api/session', formData);
+				const user = new User(formData.user, formData.email);
 
-
-				let state = {
-					username: formData.user,
-					email: formData.email
-				};
-
-				this.router.go('/chat', state);
+				user
+					.signup()
+					.then(() => {
+						console.log('cookie is');
+						console.dir(document.cookie);
+						this.router.go('/chat', user.json);
+					})
+					.catch(console.error);
 			});
 
 			let playButton = document.getElementById('js-play');
