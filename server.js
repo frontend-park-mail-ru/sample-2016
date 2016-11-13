@@ -20,12 +20,10 @@ let cookieParser = require('cookie-parser');
 let websokify = require('express-ws');
 let makeUser = require('./make-user');
 let parser = require('body-parser');
-let full = require('./full');
 websokify(app);
 
 const users = new Map();
 const messages = [];
-full(users, messages);
 
 
 app.use(parser.json());
