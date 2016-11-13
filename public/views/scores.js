@@ -9,7 +9,6 @@
 			super(options);
 			this._el = document.querySelector('.js-scores');
 			this.hide();
-			this._userModel = new User('user', 'password');
 		}
 
 		init(options = {}) {
@@ -17,7 +16,7 @@
 		}
 
 		resume() {
-			this._userModel.fetchAll()
+			User.fetchAll()
 				.then(users => {
 					this._el.innerHTML = '<ul>' + users.map(u => `<li>${u.username} - ${u.email}</li>`).join('') + '</ul>';
 					this.show();

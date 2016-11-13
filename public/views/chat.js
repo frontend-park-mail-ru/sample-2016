@@ -24,7 +24,6 @@
 					email: options.email
 				}
 			});
-			// this._component.subscribe();
 			this._component.render();
 			this.show();
 		}

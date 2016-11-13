@@ -4,14 +4,14 @@
 	/**
 	 * Класс Сообщений
 	 */
-	class Messages {
+	class Message {
 		/**
-		 *
-		 * @param cb
+		 * Создаёт соединение с сервером
+		 * @param cb - функция обратного вызова, которая вызывается при обновлении чата
 		 */
 		constructor(cb) {
 			const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-			const address = `${protocol}//${window.__WSHOST}/ws/messages`;
+			const address = `${protocol}//${location.host}/ws/messages`;
 			this.addNewMessageListener(cb);
 			this.ws = new WebSocket(address);
 
@@ -25,6 +25,7 @@
 				}.bind(this);
 
 
+				// предотвращает разрыв соединения с сервером
 				setInterval(() => {
 					console.info('refresh ws');
 					this.ws.send('');
@@ -34,17 +35,25 @@
 			}.bind(this);
 		}
 
+		/**
+		 * Отправляет новое сообщение
+		 * @param message - текст сообщения
+		 */
 		sendMessage(message) {
 			this.ws.send(JSON.stringify({
 				text: message
 			}));
 		}
 
+		/**
+		 * Устанавливает новый обработчик
+		 * @param callback
+		 */
 		addNewMessageListener(callback) {
 			this.callback = callback;
 		}
 	}
 
 	//export
-	window.Messages = Messages;
+	window.Message = Message;
 })();
