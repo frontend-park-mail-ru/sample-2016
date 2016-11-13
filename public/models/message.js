@@ -1,13 +1,16 @@
 (function () {
 	'use strict';
 
-	// import
-	// let Model = window.Model;
-
-	class Message {
+	/**
+	 * Класс Сообщений
+	 */
+	class Messages {
+		/**
+		 *
+		 * @param cb
+		 */
 		constructor(cb) {
-			const protocol = window.location.protocol === 'https:' ?
-				'wss:' : 'ws:';
+			const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 			const address = `${protocol}//${window.__WSHOST}/ws/messages`;
 			this.addNewMessageListener(cb);
 			this.ws = new WebSocket(address);
@@ -43,5 +46,5 @@
 	}
 
 	//export
-	window.Message = Message;
+	window.Messages = Messages;
 })();

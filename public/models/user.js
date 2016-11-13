@@ -1,7 +1,6 @@
 (function () {
 	'use strict';
 
-
 	/**
 	 * Класс User
 	 */
@@ -29,7 +28,7 @@
 					email: this.email
 				});
 
-				xhr.open('POST', `${window.__HOST}/api/users`, true);
+				xhr.open('POST', `/api/users`, true);
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
@@ -41,16 +40,23 @@
 					resolve(JSON.parse(json));
 				};
 
+				xhr.onerror = function () {
+					reject();
+				};
+
 				xhr.send(json);
 			}.bind(this));
 		}
 
-
-		fetchAll() {
+		/**
+		 * Получает список пользователей с сервера
+		 * @returns {Promise}
+		 */
+		static fetchAll() {
 			return new Promise(function (resolve, reject) {
 				const xhr = new XMLHttpRequest();
 
-				xhr.open('GET', `${window.__HOST}/api/users`, true);
+				xhr.open('GET', `/api/users`, true);
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
@@ -63,7 +69,7 @@
 				};
 
 				xhr.send();
-			}.bind(this));
+			});
 		}
 
 		/**

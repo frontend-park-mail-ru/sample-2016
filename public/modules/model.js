@@ -1,8 +1,8 @@
 (function () {
 	'use strict';
-	
+
 	class Model {
-		
+
 		constructor(attributes = {}) {
 			Object.keys(attributes).forEach(key => {
 				if (attributes[key] === undefined) {
@@ -11,15 +11,15 @@
 			})
 			this.attributes = Object.assign({}, this.defaults, attributes);
 		}
-		
+
 		get defaults() {
 			return {};
 		}
-		
+
 		get url() {
 			return '/';
 		}
-		
+
 		send(method, data = {}) {
 			return new Promise((resolve, reject) => {
 				let xhr = new XMLHttpRequest();
@@ -31,7 +31,7 @@
 						resolve(xhr.responseText);
 					}
 				}
-				
+
 				xhr.onerror = function () {
 					reject();
 				}
@@ -39,15 +39,15 @@
 				xhr.send(JSON.stringify(data));
 			});
 		}
-		
+
 		save() {
 			let method = this.attributes.id ? 'PUT' : 'POST';
-			
+
 			return this.send(method, this.attributes);
 		}
-		
+
 	}
-	
+
 	// export
 	window.Model = Model;
 })();

@@ -2,6 +2,7 @@
 const CACHE_NAME = 'app_serviceworker_v_1';
 // ссылки на кэшируемые файлы
 const cacheUrls = [
+	'/',
 	'/css/milligram.min.css',
 	'/css/main.css',
 	'/components/button/button.css',
@@ -33,6 +34,7 @@ const cacheUrls = [
 	'/views/main.js',
 	'/views/game.js',
 	'/views/chat.js',
+	'/views/scores.js',
 
 	'/main.js'
 ];
@@ -43,7 +45,8 @@ this.addEventListener('install', function (event) {
 	event.waitUntil(
 		// находим в глобальном хранилище Cache-объект с нашим именем
 		// если такого не существует, то он будет создан
-		caches.open(CACHE_NAME).then(function (cache) {
+		caches.open(CACHE_NAME)
+			.then(function (cache) {
 			// загружаем в наш cache необходимые файлы
 			return cache.addAll(cacheUrls);
 		})
