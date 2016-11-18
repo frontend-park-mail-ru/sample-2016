@@ -11,6 +11,9 @@ export default class ChatView extends View {
 	}
 
 	resume(options = {}) {
+		if (!options.username && !options.email) {
+			return this.router.go('/');
+		}
 
 		this._component = new Chat({
 			el: this._el,
@@ -21,8 +24,6 @@ export default class ChatView extends View {
 			}
 		});
 		this._component.render();
-		this._component.subscribe();
-
 		this.show();
 	}
 }

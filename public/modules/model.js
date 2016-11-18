@@ -1,7 +1,7 @@
 'use strict';
 
-export default class Model {
 
+export default class Model {
 	constructor(attributes = {}) {
 		Object.keys(attributes).forEach(key => {
 			if (attributes[key] === undefined) {
@@ -34,6 +34,7 @@ export default class Model {
 			xhr.onerror = function () {
 				reject();
 			};
+
 
 			xhr.send(JSON.stringify(data));
 		});

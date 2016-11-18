@@ -1,1 +1,6 @@
-/dist/
+dist/
+node_modules/
+public/coverage/
+public/api/
+api/
+*.tmpl.js

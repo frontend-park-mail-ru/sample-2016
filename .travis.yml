@@ -11,8 +11,11 @@ before_install:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
   - sh -e /etc/init.d/xvfb start
+before_deploy:
+  - npm run fest
 deploy:
   provider: heroku
   api_key:
     secure: qk2xO1iTD2ZNqU54DE2ctnXXDP8b19XwEx2KFiqT/jcDF0qAomZw1YNE7n/6QBjmeXiLRw4MOzyGLN52S0mwk6OYb01N9+TJalHa+YKqQJgXpsVlHbCLPF6FSaA8k/s7jfNu21y7qseeRNWFzXXc62/85R92BCzDOFPvNpmCNVyg+4+8V/KfsvTXpz+W1Z41UZDmxoFM5BaSG0jQb6QMaHpzWmJzSnjilZhZGriIaLhL02E2HVcLbZ5Y8RxuYK7A23hc//CUztlkYpB8qXQK4dpmd4ug2ubtg57qY3YfbCc4a59rnd218la1DsbTLKZEUrSnL6PcD7dWrOcQ28aoQddMIVKt3GGELJEv09YjfSALDRkdzI7db0wn6bu+6hjNKA1TIyr9/B+FqeSODkAEMNmviymUmIxhIVp/S+uZ52BbGnUdElnuxmaFAYxVAXJfgK1qKDBGH+7r4xchGRRMpSCO3kLRL7No6kbq/unZNmyR0k9KFvU7nyhl4/9gYeB1oBgdH4z1dnzEKt4/ahMsihV4iJPK++VbeAcoRBdS79fhtr3yXS/qI6ZP7Xk8Cu5CEbDZfFpKQwPNZGUcmMP/zl1Gi/NtJvfR7ltAQXKwQj6W0tXvD8Xx+jjdwJ/ejmhCBXclUcg0BYlgAGrUn5byeCm65rIXBSKbj+97l6bmDbM=
   app: sample-2016
+  skip_cleanup: true

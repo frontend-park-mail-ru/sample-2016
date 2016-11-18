@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WEB-chat</title>
+	<link rel="stylesheet" href="/css/milligram.min.css"/>
+	<style>
+		body {
+			width: 75%;
+			margin: 100px auto 0;
+		}
+	</style>
+</head>
+<body>
+
+<h1 id="header">Соединение устанавливается</h1>
+
+<div id="wrapper" hidden="hidden">
+	<label for="text">Введите сообщение</label>
+	<input type="text" id="text">
+	<input type="button" id="send" value="Отправить">
+	<ul id="messages"></ul>
+</div>
+
+<script>
+	'use strict';
+
+	// Выбираем по какому протоколу будет производиться соединение
+	const protocol = window.location.protocol === 'https:' ?
+			'wss:' : 'ws:';
+
+	// Составляем адрес, по которому будет призводиться соединение
+	const address = `${protocol}//${location.host}/ws/echo`;
+
+
+	console.log('Создаём новый WebSocket:', address);
+	const ws = new WebSocket(address);
+
+	// обработчик открытия соединения
+	ws.onopen = function (event) {
+		// выводим сообщение, что соединение установлено
+		window.header.innerText = 'Соединено';
+		window.wrapper.hidden = false;
+
+		// добавляем обработчик события нажатия на кнопку
+		window.send.addEventListener('click', function (e) {
+			e.preventDefault();
+			const msg = window.text.value.trim();
+			window.text.value = '';
+			if (!msg) {
+				// поле ввода пустое - ничего не делаем
+				return;
+			}
+			// отправляем по сокету сообщение с текстом из поля
+			ws.send(JSON.stringify({text: msg}));
+		});
+
+		// добавляем обработчик для нового сообщения
+		ws.onmessage = function (event) {
+			// получаем сообщение
+			const incomingMessage = event.data;
+			// парсим сообщение
+			const message = JSON.parse(incomingMessage);
+			// добавляем сообщение на страницу
+			window.messages.innerHTML += '<li></li>';
+			window.messages.lastChild.innerText = message.text;
+		};
+	};
+
+	// обработчик закрытия сокета
+	ws.onclose = function (event) {
+		if (event.wasClean) {
+			console.log('Соединение закрыто чисто');
+		} else {
+			console.log('Обрыв соединения');
+		}
+		console.log('Код: ' + event.code + ' причина: ' + event.reason);
+		// вывод на экран сообщения о закрытии соединения
+		window.header.innerText = 'Соединение закрыто';
+		window.wrapper.hidden = true;
+	};
+
+	// обработчик ошибок в сокете
+	ws.onerror = function (error) {
+		console.log('Ошибка ' + error.message);
+	};
+
+</script>
+</body>
+</html>

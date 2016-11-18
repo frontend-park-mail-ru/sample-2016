@@ -1,6 +1,6 @@
 node_modules/
 public/coverage/
 public/api/
-*.log
 dist/
+*.log
 *.tmpl.js

@@ -2,7 +2,8 @@
 
 import View from '../modules/view';
 import Form from '../components/form/form';
-import technolibs from 'technolibs';
+import User from '../models/user';
+
 
 export default class MainView extends View {
 	constructor(options = {}) {
@@ -42,15 +43,26 @@ export default class MainView extends View {
 			event.preventDefault();
 
 			let formData = this._component.getFormData();
-			technolibs.request('/api/session', formData);
+			const user = new User(formData.user, formData.email);
 
+			user
+				.signup()
+				.then(() => {
+					this.router.go('/chat', user.json);
+				})
+				.catch(console.error);
+		});
 
-			let state = {
-				username: formData.user,
-				email: formData.email
-			};
+		let playButton = document.getElementById('js-play');
+		playButton.addEventListener('click', event => {
+			event.preventDefault();
+			this.router.go('/game');
+		});
 
-			this.router.go('/chat', state);
+		let scoresButton = document.getElementById('js-scores-btn');
+		scoresButton.addEventListener('click', event => {
+			event.preventDefault();
+			this.router.go('/scores');
 		});
 	}
 }

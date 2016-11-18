@@ -23,10 +23,10 @@
   "author": "",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "json-schema-mock": "0.0.8",
-    "techno-gendoc": "0.4.1",
-    "technolibs": "1.1.*"
+    "express-ws": "^2.0.0",
+    "techno-gendoc": "0.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",

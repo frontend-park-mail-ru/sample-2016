@@ -40,6 +40,7 @@ export default class Form extends Block {
 		this._el.innerHTML = this.template(this.data);
 	}
 
+
 	/**
 	 * Вставить управляющие элементы в форму
 	 */
@@ -47,7 +48,7 @@ export default class Form extends Block {
 		let {controls = []} = this.data;
 
 		controls.forEach(data => {
-			let control = new Button({text: data.text});
+			let control = new Button(data);
 			this._el.querySelector('.js-controls').appendChild(control._get());
 		});
 	}
