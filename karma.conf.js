@@ -1,20 +1,27 @@
+'use strict';
+
+
+const webpackConfig = require('./karma.webpack.config.js');
+
 module.exports = function (config) {
 	'use strict';
-	let configuration = {
+	const configuration = {
 
 		basePath: '',
 
 		frameworks: ['jasmine'],
 
 		files: [
-			'./public/modules/**/*.js',
+			'./public/**/*.js',
 			'./test/**/*.spec.js'
 		],
 
 		reporters: ['progress', 'coverage'],
 		preprocessors: {
-			'./public/modules/**/*.js': ['coverage']
+			'./public/main.js': ['webpack', 'sourcemap', 'coverage']
 		},
+
+		webpack: webpackConfig,
 
 		port: 9876,
 		colors: true,
@@ -25,7 +32,9 @@ module.exports = function (config) {
 		plugins: [
 			'karma-jasmine',
 			'karma-chrome-launcher',
-			'karma-coverage'
+			'karma-coverage',
+			'karma-webpack',
+			'karma-sourcemap-loader'
 		],
 		browsers: ['Chrome'],
 		customLaunchers: {

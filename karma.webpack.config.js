@@ -6,20 +6,10 @@ const HtmlPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
 module.exports = {
 	devtool: 'inline-source-map',
 	cache: true,
-	entry: [
-		'babel-polyfill',
-		'eventsource-polyfill',
-		path.resolve(__dirname, 'public/main.js')
-	],
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: path.join('assets', 'js', '[name].bundle.[hash].js'),
-		chunkFilename: '[id].bundle.[hash].js',
-		publicPath: '/'
-	},
 	module: {
 		loaders: [
 			{
