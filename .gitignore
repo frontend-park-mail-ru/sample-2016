@@ -3,3 +3,4 @@ public/coverage/
 public/api/
 *.log
 *.tmpl.js
+dist/
