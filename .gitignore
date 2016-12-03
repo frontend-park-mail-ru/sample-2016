@@ -4,6 +4,3 @@ public/api/
 dist/
 *.log
 *.tmpl.js
-public/css/main.css
-public/css/main.css.*
-public/css/main.compiled.*
