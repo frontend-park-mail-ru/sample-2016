@@ -38,4 +38,4 @@ export default function (pathname) {
 		}
 		return null;
 	};
-};
+}

@@ -2,41 +2,7 @@
 const CACHE_NAME = 'app_serviceworker_v_1';
 // ссылки на кэшируемые файлы
 const cacheUrls = [
-	'/',
-	'/css/milligram.min.css',
-	'/css/main.css',
-	'/components/button/button.css',
-	'/components/chat/chat.css',
-
-	'/libs/technolibs/index.js',
-
-	'/modules/pathToRegex.js',
-	'/modules/view.js',
-	'/modules/model.js',
-	'/modules/route.js',
-	'/modules/router.js',
-
-	'/models/message.js',
-	'/models/user.js',
-
-	'/components/block/block.js',
-	'/components/button/button.js',
-	'/components/form/form.tmpl.js',
-	'/components/form/form.js',
-	'/components/chat/chat.tmpl.js',
-	'/components/chat/chat.js',
-
-	'/game/keymaster.js',
-	'/game/ball.js',
-	'/game/pane.js',
-	'/game/pingpong.js',
-
-	'/views/main.js',
-	'/views/game.js',
-	'/views/chat.js',
-	'/views/scores.js',
-
-	'/main.js'
+	'/'
 ];
 
 this.addEventListener('install', function (event) {
@@ -47,9 +13,9 @@ this.addEventListener('install', function (event) {
 		// если такого не существует, то он будет создан
 		caches.open(CACHE_NAME)
 			.then(function (cache) {
-			// загружаем в наш cache необходимые файлы
-			return cache.addAll(cacheUrls);
-		})
+				// загружаем в наш cache необходимые файлы
+				return cache.addAll(cacheUrls);
+			})
 	);
 });
 

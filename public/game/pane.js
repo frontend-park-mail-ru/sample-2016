@@ -1,18 +1,11 @@
-(function () {
-	'use strict';
+'use strict';
 
-	class Pane {
 
-		/**
-		 * Конструктор класса Pane
-		 */
-		constructor() {
-
-		}
-
+export default class Pane {
+	/**
+	 * Конструктор класса Pane
+	 */
+	constructor() {
 
 	}
-
-	//export
-	window.Pane = Pane;
-})();
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 import Block from '../block/block';
-import './button.css';
+import './button.scss';
 
 export default class Button extends Block {
 	constructor(options) {

@@ -116,5 +116,4 @@ export default class View {
 	setRouter(router) {
 		this.router = router;
 	}
-
 }

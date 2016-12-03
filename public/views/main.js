@@ -28,9 +28,21 @@ export default class MainView extends View {
 				],
 				controls: [
 					{
-						text: 'Войти',
+						text: 'Войти в чат',
 						attrs: {
 							type: 'submit'
+						}
+					}, {
+						text: 'Играть',
+						attrs: {
+							id: 'js-play',
+							type: 'button'
+						}
+					}, {
+						text: 'Пользователи',
+						attrs: {
+							id: 'js-scores-btn',
+							type: 'button'
 						}
 					}
 				]

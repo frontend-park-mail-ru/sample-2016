@@ -1,8 +1,7 @@
 'use strict';
 
-import './css/milligram.min.css';
-import './css/main.css';
-
+import './modules/swLoader';
+import './css/main.scss';
 
 import Router from './modules/router';
 import ChatView from './views/chat';

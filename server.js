@@ -5,11 +5,11 @@ let express = require('express');
 let app = express();
 
 technoDoc.generate(require('./api'), 'public');
-app.use('/', express.static('public', {maxAge: 1}));
-app.use('/chat', express.static('public', {maxAge: 1}));
-app.use('/game', express.static('public', {maxAge: 1}));
-app.use('/scores', express.static('public', {maxAge: 1}));
-app.use('/libs', express.static('node_modules'));
+app.use('/', express.static('index'));
+app.use('/chat', express.static('index'));
+app.use('/game', express.static('index'));
+app.use('/scores', express.static('index'));
+app.use('/dist', express.static('dist'));
 
 
 //**********************************************//

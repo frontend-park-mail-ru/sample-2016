@@ -1,7 +1,7 @@
 'use strict';
 
 // import
-import './chat.css';
+import './chat.scss';
 import Block from '../block/block';
 import Form from '../form/form';
 import Message from '../../models/message';
@@ -64,18 +64,9 @@ export default class Chat extends Block {
 
 	_sendMessage(event) {
 		event.preventDefault();
-
-		let data = {
-			message: this.form.getFormData().message,
-			email: this.data.email
-		};
-
-		let message = new Message(data);
-
-		message.save()
-			.then(data => {
-				this.form.reset();
-			});
+		let message = this.form.getFormData().message;
+		this.form.reset();
+		this.messagesModel.sendMessage(message);
 	}
 
 	_updateHtml() {
@@ -85,11 +76,10 @@ export default class Chat extends Block {
 
 	_renderMessages(messages) {
 		let wrapper = this._el.querySelector('.js-messages');
-		console.log(this.data);
 
 		wrapper.innerHTML = this.template({
 			block: 'chat__messages',
-			data: this.data.messages
+			data: messages
 		});
 
 		wrapper.scrollTop = wrapper.scrollHeight;

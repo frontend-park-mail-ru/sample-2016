@@ -1,14 +1,13 @@
 @import "../components/button/button.scss";
 @import "../components/chat/chat.scss";
-@import "./milligram.min.scss";
 
 body {
 	padding: 5vw;
 	box-sizing: border-box;
-}
 
-canvas {
-	border: 1px solid #000;
+	canvas {
+		border: 1px solid #000;
+	}
 }
 
 .cssload-wrap {
@@ -27,6 +26,7 @@ canvas {
 	transform-style: preserve-3d;
 	animation: cssload-wobble 4.59s ease-in-out infinite;
 }
+
 .cssload-cssload-spinner:before, .cssload-cssload-spinner:after {
 	display: block;
 	content: "";
@@ -36,10 +36,12 @@ canvas {
 	border-radius: 50%;
 	animation: cssload-spin 1.73s ease-in-out infinite both reverse;
 }
+
 .cssload-cssload-spinner:before {
-	border-color: rgb(221,221,221);
+	border-color: rgb(221, 221, 221);
 	position: absolute;
 }
+
 .cssload-cssload-spinner:after {
 	border-color: black;
 	animation-delay: -0.86s;
