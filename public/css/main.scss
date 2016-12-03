@@ -1,0 +1,67 @@
+@import "../components/button/button.scss";
+@import "../components/chat/chat.scss";
+@import "./milligram.min.scss";
+
+body {
+	padding: 5vw;
+	box-sizing: border-box;
+}
+
+canvas {
+	border: 1px solid #000;
+}
+
+.cssload-wrap {
+	display: flex;
+	box-pack: center;
+	justify-content: center;
+	box-align: center;
+	align-items: center;
+	perspective: 390px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.cssload-cssload-spinner {
+	position: relative;
+	transform-style: preserve-3d;
+	animation: cssload-wobble 4.59s ease-in-out infinite;
+}
+.cssload-cssload-spinner:before, .cssload-cssload-spinner:after {
+	display: block;
+	content: "";
+	width: 88px;
+	height: 88px;
+	border: 44px solid;
+	border-radius: 50%;
+	animation: cssload-spin 1.73s ease-in-out infinite both reverse;
+}
+.cssload-cssload-spinner:before {
+	border-color: rgb(221,221,221);
+	position: absolute;
+}
+.cssload-cssload-spinner:after {
+	border-color: black;
+	animation-delay: -0.86s;
+}
+
+@keyframes cssload-wobble {
+	0%, 100% {
+		transform: rotateX(8.75deg) rotateY(35deg);
+	}
+	50% {
+		transform: rotateX(35deg) rotateY(-35deg) rotate(180deg);
+	}
+}
+
+@keyframes cssload-spin {
+	0%, 100% {
+		transform: translateZ(49px) rotateX(14deg);
+	}
+	33% {
+		transform: translateZ(-49px) scale(0.4);
+	}
+	66% {
+		transform: translateZ(-49px);
+	}
+}

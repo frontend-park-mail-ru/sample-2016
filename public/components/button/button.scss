@@ -1,5 +1,7 @@
+$button_background: #4dca62;
+
 .button {
-	background-color: #4dca62;
+	background-color: $button_background;
 	border: .1rem solid #4dca62;
 	border-radius: .4rem;
 	color: #fff;
