@@ -17,8 +17,9 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: path.join('js', '[name].bundle.[hash].js'),
-		publicPath: '/dist/'
-		// publicPath: 'https://s3.eu-central-1.amazonaws.com/technopark-cdn/sample-static/'
+		// TODO сделать выбор этого параметра зависящим от переменных окружения
+		// publicPath: '/dist/' // for development
+		publicPath: 'https://s3.eu-central-1.amazonaws.com/technopark-cdn/sample-static/'
 	},
 	module: {
 		loaders: [
@@ -34,7 +35,7 @@ module.exports = {
 				test: /\.s?css/,
 				loader: ExtractTextPlugin.extract({
 					fallbackLoader: 'style-loader',
-					loader: ['css-loader', 'postcss-loader', 'sass-loader']
+					loader: ['css-loader?minimize', 'postcss-loader', 'sass-loader']
 				})
 			},
 			{
