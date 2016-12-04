@@ -1,11 +1,11 @@
 'use strict';
 
-import serviceWorkerURL from 'file?name=[name].[hash].js!../sw';
+import serviceWorkerURL from '../sw'; // see webpack.config.js
 
 
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
-		.register(serviceWorkerURL, {scope: '/'})
+		.register(serviceWorkerURL.replace('/index', ''), {scope: '/'})
 		.then(function (registration) {
 			// при удачной регистрации имеем объект типа ServiceWorkerRegistration
 			console.info('ServiceWorker registration', registration);

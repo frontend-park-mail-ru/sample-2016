@@ -11,7 +11,7 @@ module.exports = {
 	devtool: 'inline-source-map',
 	cache: true,
 	entry: {
-		sample: path.resolve(__dirname, 'public/main.js'),
+		sample: path.resolve(__dirname, 'public', 'main.js'),
 		vendor: ['babel-polyfill', 'eventsource-polyfill', 'milligram']
 	},
 	output: {
@@ -32,15 +32,19 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.s?css/,
+				test: /\.s?css$/,
 				loader: ExtractTextPlugin.extract({
 					fallbackLoader: 'style-loader',
 					loader: ['css-loader?minimize', 'postcss-loader', 'sass-loader']
 				})
 			},
 			{
-				test: /\.tmpl\.xml/,
+				test: /\.tmpl\.xml$/,
 				loader: 'fest-loader'
+			},
+			{
+				test: /\/sw.js$/,
+				loader: `file?name=${path.join('..', 'index', '[name].[hash].js')}&publicPath=/&outputPath=/`
 			}
 		]
 	},
@@ -50,21 +54,21 @@ module.exports = {
 	resolveLoader: {
 		moduleExtensions: ['-loader'],
 		alias: {
-			'fest-loader': path.resolve(__dirname, './fest-loader')
+			'fest-loader': path.resolve(__dirname, './fest-loader'),
 		}
 	},
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
 		new webpack.NoErrorsPlugin(),
 		new HtmlPlugin({
-			filename: path.resolve(__dirname, 'index/index.html'),
-			template: path.resolve(__dirname, 'public/index.html')
+			filename: path.resolve(__dirname, 'index', 'index.html'),
+			template: path.resolve(__dirname, 'public', 'index.html')
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
 			filename: path.join('js', '[name].bundle.[hash].js')
 		}),
-		new ExtractTextPlugin('css/[name].bundle.[hash].css'),
+		new ExtractTextPlugin(path.join('css', '[name].bundle.[hash].css')),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			beautify: false,
